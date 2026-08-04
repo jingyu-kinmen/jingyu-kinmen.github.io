@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>晶鈺國際通商 × 夏興客棧 | JingYu International × Xiaxing Inn</title>
+<meta name="description" content="影像、音樂與攝影作品；晶鈺國際通商有限公司行銷服務；金門夏興客棧民宿訂房與物件預約；精選保養品與飾品。">
+<style>
+:root{
+  --bg:#faf7f2;
+  --bg-2:#f3ece2;
+  --card:#fffdfa;
+  --ink:#2b2621;
+  --ink-soft:#5a5047;
+  --muted:#8a7d70;
+  --line:#e8ded0;
+  --accent:#a86f4c;
+  --accent-dark:#8a5738;
+  --sage:#6f7f6c;
+  --shadow:0 1px 2px rgba(60,44,30,.05),0 8px 28px rgba(60,44,30,.07);
+  --shadow-lg:0 30px 70px rgba(60,44,30,.18);
+  --radius:16px;
+  --maxw:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  line-height:1.75;-webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+/* ---------- language ---------- */
+[data-lang="zh"] .en{display:none}
+[data-lang="en"] .zh{display:none}
+
+/* ---------- nav ---------- */
+header.nav{
+  position:sticky;top:0;z-index:60;
+  background:rgba(250,247,242,.86);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:20px}
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none;flex:0 0 auto}
+.logo-mark{
+  width:38px;height:38px;border-radius:11px;flex:0 0 auto;
+  background:linear-gradient(140deg,var(--accent),#c9a37f 60%,var(--sage));
+  display:grid;place-items:center;color:#fff;font-weight:700;font-size:15px;letter-spacing:.5px;
+}
+.logo-txt{font-weight:700;font-size:15.5px;letter-spacing:.02em;line-height:1.25}
+.logo-txt small{display:block;font-weight:400;font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+nav.links{margin-left:auto;display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+nav.links a{
+  text-decoration:none;font-size:14.5px;color:var(--ink-soft);
+  padding:8px 13px;border-radius:9px;transition:.18s;white-space:nowrap;
+}
+nav.links a:hover{background:var(--bg-2);color:var(--ink)}
+.langbtn{
+  border:1px solid var(--line);background:var(--card);color:var(--ink-soft);
+  font:inherit;font-size:13px;font-weight:600;padding:7px 13px;border-radius:999px;cursor:pointer;transition:.18s;
+}
+.langbtn:hover{border-color:var(--accent);color:var(--accent)}
+.menu-toggle{display:none;margin-left:auto;background:none;border:1px solid var(--line);border-radius:9px;padding:8px 11px;cursor:pointer;font-size:17px;line-height:1}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;padding:96px 0 84px;
+  background:
+    radial-gradient(1100px 520px at 82% -8%,#f0e3d4 0%,transparent 62%),
+    radial-gradient(760px 460px at 4% 108%,#e6ece2 0%,transparent 60%),
+    var(--bg);
+}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.eyebrow{font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:18px}
+.hero h1{font-size:clamp(34px,5.2vw,58px);line-height:1.14;margin:0 0 22px;letter-spacing:-.015em;font-weight:700}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p.lede{font-size:17.5px;color:var(--ink-soft);max-width:37em;margin:0 0 34px}
+.btnrow{display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;text-decoration:none;cursor:pointer;
+  font:inherit;font-size:15px;font-weight:600;padding:13px 24px;border-radius:11px;border:1px solid transparent;transition:.18s;
+}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-dark);transform:translateY(-1px)}
+.btn-ghost{background:var(--card);border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn-sm{font-size:13.5px;padding:9px 16px;border-radius:9px}
+.hero-art{position:relative;height:400px}
+.hero-art .tile{
+  position:absolute;border-radius:18px;box-shadow:var(--shadow);overflow:hidden;
+  background:var(--card);border:1px solid var(--line);
+}
+.hero-art .t1{inset:0 26% 34% 0;animation:float 9s ease-in-out infinite}
+.hero-art .t2{inset:30% 0 12% 34%;animation:float 11s ease-in-out infinite reverse}
+.hero-art .t3{width:132px;height:132px;left:2%;bottom:2%;animation:float 8s ease-in-out infinite .8s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-11px)}}
+.ph{width:100%;height:100%;display:grid;place-items:center;color:#fff;font-size:30px;
+  background:linear-gradient(150deg,#c9a685,#a86f4c 55%,#7f8f7b)}
+.ph.b{background:linear-gradient(150deg,#adbfa8,#6f7f6c 60%,#a86f4c)}
+.ph.c{background:linear-gradient(150deg,#e0c6ab,#c08e63)}
+
+/* ---------- sections ---------- */
+section{padding:88px 0;scroll-margin-top:74px}
+section.alt{background:var(--bg-2)}
+.sec-head{max-width:720px;margin-bottom:42px}
+.sec-head .eyebrow{margin-bottom:12px}
+.sec-head h2{font-size:clamp(26px,3.4vw,38px);margin:0 0 14px;letter-spacing:-.01em;font-weight:700;line-height:1.22}
+.sec-head p{color:var(--ink-soft);margin:0;font-size:16.5px}
+
+/* ---------- filters ---------- */
+.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:26px}
+.chip{
+  border:1px solid var(--line);background:var(--card);color:var(--ink-soft);
+  font:inherit;font-size:14px;padding:8px 17px;border-radius:999px;cursor:pointer;transition:.18s;
+}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* ---------- grids ---------- */
+.grid{display:grid;gap:22px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;box-shadow:var(--shadow);transition:.2s;display:flex;flex-direction:column;
+}
+.card:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(60,44,30,.13);border-color:#d9cbb8}
+.card-media{position:relative;aspect-ratio:4/3;background:var(--bg-2);overflow:hidden;cursor:pointer}
+.card-media img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.card:hover .card-media img{transform:scale(1.045)}
+.badge{
+  position:absolute;top:11px;left:11px;z-index:2;background:rgba(43,38,33,.72);color:#fff;
+  font-size:11.5px;font-weight:600;letter-spacing:.06em;padding:4px 10px;border-radius:999px;backdrop-filter:blur(6px);
+}
+.play{
+  position:absolute;inset:0;display:grid;place-items:center;z-index:1;pointer-events:none;
+}
+.play span{
+  width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.9);color:var(--accent);
+  display:grid;place-items:center;font-size:19px;padding-left:4px;box-shadow:0 6px 20px rgba(0,0,0,.18);
+}
+.card-body{padding:17px 18px 19px;flex:1;display:flex;flex-direction:column;gap:7px}
+.card-body h3{margin:0;font-size:16.5px;font-weight:700;line-height:1.4}
+.card-body p{margin:0;font-size:14px;color:var(--muted);flex:1}
+.meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:6px}
+.price{font-weight:700;color:var(--accent);font-size:16px}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.tag{font-size:11.5px;color:var(--sage);background:#eef1ec;border-radius:6px;padding:3px 8px;font-weight:600}
+
+/* ---------- property card ---------- */
+.prop{display:grid;grid-template-columns:250px 1fr;gap:0}
+.prop .card-media{aspect-ratio:auto;height:100%;min-height:210px}
+.prop .card-body{padding:22px 24px}
+.prop h3{font-size:19px}
+.prop .row{display:flex;gap:16px;flex-wrap:wrap;font-size:13.5px;color:var(--muted);margin-top:2px}
+
+/* ---------- about ---------- */
+.co{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:32px 30px;box-shadow:var(--shadow);
+}
+.co-top{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+.co-mark{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;color:#fff;font-weight:700;font-size:18px;flex:0 0 auto;
+  background:linear-gradient(140deg,var(--accent),#c9a37f)}
+.co-mark.s{background:linear-gradient(140deg,var(--sage),#a8bda2)}
+.co h3{margin:0;font-size:20px;font-weight:700;line-height:1.35}
+.co h3 small{display:block;font-size:12.5px;color:var(--muted);font-weight:500;letter-spacing:.05em;margin-top:2px}
+.co > p{color:var(--ink-soft);font-size:15px;margin:14px 0 18px}
+.do-list{list-style:none;padding:0;margin:0 0 20px}
+.do-list li{padding:8px 0 8px 26px;position:relative;font-size:14.5px;color:var(--ink-soft);border-bottom:1px dashed var(--line)}
+.do-list li:last-child{border-bottom:0}
+.do-list li::before{content:"";position:absolute;left:5px;top:16px;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.co.sage .do-list li::before{background:var(--sage)}
+.facts{border-top:1px solid var(--line);padding-top:16px;display:grid;gap:9px}
+.fact{display:grid;grid-template-columns:96px 1fr;gap:12px;font-size:13.5px;align-items:start}
+.fact b{color:var(--muted);font-weight:600}
+.fact span{color:var(--ink-soft)}
+.fact a{color:var(--accent);text-decoration:none}
+.fact a:hover{text-decoration:underline}
+
+/* ---------- forms ---------- */
+.form{display:grid;gap:15px}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+label{display:block;font-size:13.5px;font-weight:600;color:var(--ink-soft);margin-bottom:6px}
+input,select,textarea{
+  width:100%;font:inherit;font-size:15px;padding:11px 14px;border:1px solid var(--line);
+  border-radius:10px;background:var(--card);color:var(--ink);transition:.18s;
+}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(168,111,76,.13)}
+textarea{resize:vertical;min-height:92px}
+.note{font-size:13px;color:var(--muted);margin:0}
+
+/* ---------- contact ---------- */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.loc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:14px}
+.loc h4{margin:0 0 6px;font-size:15.5px;font-weight:700}
+.loc p{margin:0;font-size:14px;color:var(--ink-soft)}
+.loc a{color:var(--accent);text-decoration:none;font-weight:600}
+
+/* ---------- footer ---------- */
+footer{background:#2b2621;color:#d9cfc3;padding:52px 0 34px;font-size:14px}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px}
+footer h5{color:#fff;font-size:14px;margin:0 0 12px;letter-spacing:.05em}
+footer a{color:#d9cfc3;text-decoration:none}
+footer a:hover{color:#fff}
+footer ul{list-style:none;padding:0;margin:0;display:grid;gap:7px}
+.copy{border-top:1px solid #423a32;margin-top:34px;padding-top:20px;text-align:center;color:#9c9086;font-size:12.5px}
+
+/* ---------- lightbox ---------- */
+.lb{position:fixed;inset:0;z-index:200;background:rgba(28,24,20,.94);display:none;align-items:center;justify-content:center;padding:34px}
+.lb.on{display:flex}
+.lb-in{max-width:1000px;width:100%;max-height:88vh;display:flex;flex-direction:column;gap:14px;align-items:center}
+.lb-in img,.lb-in video,.lb-in iframe{max-width:100%;max-height:74vh;border-radius:12px;background:#000;width:100%}
+.lb-in iframe{aspect-ratio:16/9;height:auto;border:0}
+.lb-cap{color:#f2ebe2;text-align:center}
+.lb-cap b{display:block;font-size:17px;margin-bottom:4px}
+.lb-cap small{color:#a99e93;font-size:13.5px}
+.lb-x{position:absolute;top:20px;right:24px;background:none;border:0;color:#fff;font-size:32px;cursor:pointer;line-height:1;opacity:.75}
+.lb-x:hover{opacity:1}
+
+/* ---------- relax mode ---------- */
+.relax{position:fixed;inset:0;z-index:300;background:#171412;display:none}
+.relax.on{display:block}
+.relax .slide{position:absolute;inset:0;z-index:0;opacity:0;transition:opacity 2.4s ease;background-size:cover;background-position:center;
+  pointer-events:none;animation:kb 20s ease-in-out infinite alternate}
+.relax .slide.on{opacity:1}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.09)}}
+.relax .veil{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,.62),transparent 46%)}
+.relax .cap{position:absolute;left:0;right:0;bottom:52px;z-index:2;pointer-events:none;text-align:center;color:#fff;padding:0 30px}
+.relax .cap b{display:block;font-size:24px;font-weight:600;letter-spacing:.02em}
+.relax .cap small{color:#cbbfb2;font-size:14px}
+.relax .exit{position:absolute;top:22px;right:26px;z-index:10;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.32);
+  color:#fff;font:inherit;font-size:13.5px;padding:10px 18px;border-radius:999px;cursor:pointer;backdrop-filter:blur(8px)}
+.relax .exit:hover{background:rgba(255,255,255,.28)}
+.relax .exit:active{transform:scale(.96)}
+.relax .hint{position:absolute;top:26px;left:26px;z-index:10;color:rgba(255,255,255,.62);font-size:12.5px;pointer-events:none;letter-spacing:.03em}
+
+/* ---------- cart ---------- */
+.cartbar{
+  position:fixed;left:50%;transform:translateX(-50%) translateY(140%);bottom:22px;z-index:120;
+  background:var(--ink);color:#fff;border-radius:999px;padding:11px 13px 11px 22px;display:flex;align-items:center;gap:16px;
+  box-shadow:var(--shadow-lg);transition:transform .3s cubic-bezier(.2,.9,.3,1);max-width:calc(100% - 32px);
+}
+.cartbar.on{transform:translateX(-50%) translateY(0)}
+.cartbar span{font-size:14.5px;white-space:nowrap}
+.cartbar button{background:#fff;color:var(--ink);border:0;font:inherit;font-weight:700;font-size:14px;padding:9px 18px;border-radius:999px;cursor:pointer}
+.cartbar button:hover{background:#f0e6d9}
+
+/* ---------- modal ---------- */
+.modal{position:fixed;inset:0;z-index:250;background:rgba(35,29,24,.55);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:24px;overflow:auto}
+.modal.on{display:flex}
+.modal-in{background:var(--card);border-radius:18px;max-width:560px;width:100%;padding:30px;box-shadow:var(--shadow-lg);max-height:90vh;overflow:auto}
+.modal-in h3{margin:0 0 6px;font-size:21px}
+.modal-in > p.note{margin-bottom:20px}
+.modal-x{float:right;background:none;border:0;font-size:26px;cursor:pointer;color:var(--muted);line-height:1;margin:-6px -6px 0 0}
+textarea.summary{
+  display:block;width:100%;background:var(--bg-2);border:1px solid var(--line);border-radius:12px;
+  padding:14px 16px;font-size:13.5px;line-height:1.75;color:var(--ink);
+  font-family:ui-monospace,SFMono-Regular,Menlo,"Noto Sans TC",monospace;
+  min-height:200px;max-height:46vh;resize:vertical;
+}
+textarea.summary:focus{outline:none;border-color:var(--accent);background:var(--card);box-shadow:0 0 0 3px rgba(168,111,76,.13)}
+.edit-hint{font-size:12.5px;color:var(--muted);margin:8px 0 0;line-height:1.7}
+.edit-hint a{color:var(--accent);font-weight:600}
+.edit-hint b{color:var(--ink-soft);font-weight:600;word-break:break-all}
+.ok{background:#eaf2e7;border:1px solid #cfe0c9;color:#3f5a39;border-radius:10px;padding:11px 14px;font-size:13.5px;display:none}
+.ok.on{display:block}
+
+/* ---------- responsive ---------- */
+@media(max-width:1000px){
+  .g4{grid-template-columns:repeat(3,1fr)}
+  .hero-grid{grid-template-columns:1fr;gap:36px}
+  .hero-art{height:300px}
+  footer .wrap{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+  section{padding:60px 0}
+  .g3,.g4{grid-template-columns:repeat(2,1fr)}
+  .g2,.contact-grid,.f2{grid-template-columns:1fr}
+  .prop{grid-template-columns:1fr}
+  .prop .card-media{min-height:190px;aspect-ratio:16/10}
+  nav.links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);
+    flex-direction:column;align-items:stretch;padding:10px 16px 16px;gap:2px;box-shadow:var(--shadow)}
+  nav.links.open{display:flex}
+  nav.links a{padding:11px 12px}
+  .menu-toggle{display:block}
+  header.nav{position:sticky}
+  .nav-in{position:relative}
+  footer .wrap{grid-template-columns:1fr}
+}
+@media(max-width:460px){
+  .g3,.g4{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<header class="nav">
+  <div class="nav-in">
+    <a class="logo" href="#top">
+      <div class="logo-mark">晶</div>
+      <div class="logo-txt">
+        <span class="zh">晶鈺國際通商 × 夏興客棧</span>
+        <span class="en">JingYu Int'l × Xiaxing Inn</span>
+        <small><span class="zh">金門・台北</span><span class="en">Kinmen · Taipei</span></small>
+      </div>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+    <nav class="links" id="navLinks">
+      <a href="#gallery"><span class="zh">藝廊</span><span class="en">Gallery</span></a>
+      <a href="#stay"><span class="zh">住宿・物件</span><span class="en">Stay &amp; Property</span></a>
+      <a href="#booking"><span class="zh">預約</span><span class="en">Booking</span></a>
+      <a href="#shop"><span class="zh">選物</span><span class="en">Shop</span></a>
+      <a href="#about"><span class="zh">關於我們</span><span class="en">About</span></a>
+      <a href="#contact"><span class="zh">聯絡</span><span class="en">Contact</span></a>
+      <button class="langbtn" id="langBtn">EN</button>
+    </nav>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<div id="top"></div>
+<section class="hero" style="padding-top:80px">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">
+        <span class="zh">影像 · 音樂 · 民宿 · 選物</span>
+        <span class="en">Film · Music · Stay · Selections</span>
+      </div>
+      <h1>
+        <span class="zh">慢慢看，<em>不買也沒關係</em>。</span>
+        <span class="en">Take your time. <em>You don't have to buy anything.</em></span>
+      </h1>
+      <p class="lede">
+        <span class="zh">這裡收著我們拍的影片、寫的音樂、按下的快門，也放著金門夏興客棧的房間、家裡的房屋物件，還有一些自己挑的保養品與飾品。喜歡就留下來逛，想聊再找我們。</span>
+        <span class="en">A quiet place for the films, music and photographs we've made — alongside rooms at Xiaxing Inn in Kinmen, family property listings, and a small selection of skincare and jewellery. Stay as long as you like. Reach out only if you want to.</span>
+      </p>
+      <div class="btnrow">
+        <a class="btn btn-primary" href="#gallery"><span class="zh">看作品</span><span class="en">View the work</span></a>
+        <button class="btn btn-ghost" id="relaxOpen">◐ <span class="zh">靜靜看（全螢幕）</span><span class="en">Relax mode</span></button>
+        <a class="btn btn-ghost" href="#booking"><span class="zh">預約看房・訂房</span><span class="en">Book a visit</span></a>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="tile t1"><div class="ph">▤</div></div>
+      <div class="tile t2"><div class="ph b">♪</div></div>
+      <div class="tile t3"><div class="ph c">✦</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GALLERY ===================== -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow"><span class="zh">作品集</span><span class="en">Portfolio</span></div>
+      <h2><span class="zh">藝廊</span><span class="en">The Gallery</span></h2>
+      <p>
+        <span class="zh">影片、音樂與攝影。持續更新，隨時回來看看。</span>
+        <span class="en">Films, music and photography — added to continuously. Come back any time.</span>
+      </p>
+    </div>
+    <div class="filters" id="galFilters"></div>
+    <div class="grid g3" id="galGrid"></div>
+  </div>
+</section>
+
+<!-- ===================== STAY & PROPERTY ===================== -->
+<section id="stay" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow"><span class="zh">夏興客棧民宿・房屋物件</span><span class="en">Xiaxing Inn &amp; Properties</span></div>
+      <h2><span class="zh">住宿與物件</span><span class="en">Stay &amp; Property</span></h2>
+      <p>
+        <span class="zh">金門夏興客棧的房間，以及家族經營的房屋物件。看上哪一間，用下面的表單約時間就好。</span>
+        <span class="en">Rooms at Xiaxing Inn in Kinmen, plus family-managed property listings. See something you like? Book a time with the form below.</span>
+      </p>
+    </div>
+    <div class="filters" id="propFilters"></div>
+    <div class="grid" id="propGrid" style="gap:20px"></div>
+  </div>
+</section>
+
+<!-- ===================== BOOKING ===================== -->
+<section id="booking">
+  <div class="wrap">
+    <div class="grid g2" style="gap:46px;align-items:start">
+      <div>
+        <div class="sec-head" style="margin-bottom:24px">
+          <div class="eyebrow"><span class="zh">預約</span><span class="en">Booking</span></div>
+          <h2><span class="zh">約個時間</span><span class="en">Book a time</span></h2>
+          <p>
+            <span class="zh">訂房、看房、或想聊聊行銷合作都可以。填完按「產生預約訊息」，把訊息傳給我們就完成了 — 不需要註冊、不會寄廣告信。</span>
+            <span class="en">Room stays, property viewings, or a marketing chat. Fill this in, generate the message and send it over — no sign-up, no marketing emails.</span>
+          </p>
+        </div>
+        <div class="loc">
+          <h4><span class="zh">☏ 直接聯絡也可以</span><span class="en">☏ Or just call us</span></h4>
+          <p>
+            <span class="zh">金門公司：<a href="tel:082330575">(082) 330-575</a><br>台北客服：<a href="tel:0976336678">0976-336-678</a></span>
+            <span class="en">Kinmen office: <a href="tel:+886823305750">+886 82 330 575</a><br>Taipei service line: <a href="tel:+886976336678">+886 976 336 678</a></span>
+          </p>
+        </div>
+      </div>
+
+      <div class="co">
+        <form class="form" id="bookForm" novalidate>
+          <div>
+            <label for="bkType"><span class="zh">預約項目</span><span class="en">What for</span></label>
+            <select id="bkType">
+              <option value="訂房 / Room stay">訂房 · Room stay</option>
+              <option value="看房 / Property viewing">看房 · Property viewing</option>
+              <option value="拍攝或音樂合作 / Creative work">拍攝・音樂合作 · Creative work</option>
+              <option value="行銷諮詢 / Marketing consultation">行銷諮詢 · Marketing consultation</option>
+              <option value="其他 / Other">其他 · Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="bkItem"><span class="zh">指定房間 / 物件（選填）</span><span class="en">Room or property (optional)</span></label>
+            <select id="bkItem"></select>
+          </div>
+          <div class="f2">
+            <div>
+              <label for="bkName"><span class="zh">稱呼</span><span class="en">Your name</span></label>
+              <input id="bkName" type="text" autocomplete="name" placeholder="王小姐 / Ms. Wang">
+            </div>
+            <div>
+              <label for="bkPhone"><span class="zh">電話 / LINE</span><span class="en">Phone / LINE</span></label>
+              <input id="bkPhone" type="tel" autocomplete="tel" placeholder="09xx-xxx-xxx">
+            </div>
+          </div>
+          <div class="f2">
+            <div>
+              <label for="bkDate"><span class="zh">希望日期</span><span class="en">Preferred date</span></label>
+              <input id="bkDate" type="date">
+            </div>
+            <div>
+              <label for="bkPeople"><span class="zh">人數 / 晚數</span><span class="en">Guests / nights</span></label>
+              <input id="bkPeople" type="text" placeholder="2 人 · 1 晚">
+            </div>
+          </div>
+          <div>
+            <label for="bkNote"><span class="zh">想說的話（選填）</span><span class="en">Anything else (optional)</span></label>
+            <textarea id="bkNote" placeholder=""></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="justify-content:center">
+            <span class="zh">產生預約訊息</span><span class="en">Generate booking message</span>
+          </button>
+          <p class="note">
+            <span class="zh">資料只會留在你的瀏覽器裡，按下按鈕才會產生一段可以複製的訊息。</span>
+            <span class="en">Nothing is sent anywhere. The button simply builds a message you can copy and send.</span>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SHOP ===================== -->
+<section id="shop" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow"><span class="zh">選物</span><span class="en">Selections</span></div>
+      <h2><span class="zh">保養與飾品</span><span class="en">Skincare &amp; Jewellery</span></h2>
+      <p>
+        <span class="zh">數量不多，都是自己用過、戴過才放上來的。挑好按「加入詢問」，最後會產生一張清單傳給我們對數量與運費。</span>
+        <span class="en">A short list — everything here we've used or worn ourselves. Add what you like; you'll get a tidy order summary to send us for stock and shipping.</span>
+      </p>
+    </div>
+    <div class="filters" id="shopFilters"></div>
+    <div class="grid g4" id="shopGrid"></div>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow"><span class="zh">兩間公司</span><span class="en">Two companies</span></div>
+      <h2><span class="zh">關於我們</span><span class="en">About Us</span></h2>
+      <p>
+        <span class="zh">一間在台北與金門做國際通商與數位行銷，一間在金門開民宿、照顧房子。做的事不一樣，做事的人是同一家人。</span>
+        <span class="en">One handles international trade and digital marketing across Taipei and Kinmen. The other runs a guesthouse and looks after property in Kinmen. Different work — same family.</span>
+      </p>
+    </div>
+
+    <div class="grid g2">
+      <!-- Company 1 -->
+      <div class="co">
+        <div class="co-top">
+          <div class="co-mark">晶</div>
+          <div>
+            <h3>
+              <span class="zh">晶鈺國際通商有限公司</span>
+              <span class="en">JingYu International Trading Co., Ltd.</span>
+              <small><span class="zh">國際通商 · 行銷推廣</span><span class="en">Trade &amp; Marketing</span></small>
+            </h3>
+          </div>
+        </div>
+        <p>
+          <span class="zh">設籍金門、營運據點在台北的國際通商公司。我在這裡負責用電腦與 AI 工具做行銷推廣、內容製作與廣告投放，另外也承接旅行社相關的推廣業務。</span>
+          <span class="en">A trading company registered in Kinmen with operations in Taipei. I handle digital and AI-assisted marketing, content production and ad campaigns here, plus travel-agency promotion work.</span>
+        </p>
+        <div>
+          <ul class="do-list">
+            <li><span class="zh">國際通商・貿易業務</span><span class="en">International trade &amp; commerce</span></li>
+            <li><span class="zh">數位行銷與 AI 廣告推廣</span><span class="en">Digital marketing &amp; AI-assisted advertising</span></li>
+            <li><span class="zh">影音內容製作・社群經營</span><span class="en">Video content production &amp; social media</span></li>
+            <li><span class="zh">旅遊行程推廣・旅行社合作</span><span class="en">Travel programme promotion &amp; agency partnerships</span></li>
+            <li><span class="zh">文創合作（台北大安辦事處）</span><span class="en">Cultural &amp; creative partnerships (Taipei Da'an office)</span></li>
+          </ul>
+        </div>
+        <div class="facts">
+          <div class="fact"><b><span class="zh">統一編號</span><span class="en">Tax ID</span></b><span>54379992</span></div>
+          <div class="fact"><b><span class="zh">公司設籍</span><span class="en">Registered</span></b><span><span class="zh">金門縣金城鎮前水頭 139-1 號 2 樓</span><span class="en">2F, No. 139-1, Qianshuitou, Jincheng Township, Kinmen</span></span></div>
+          <div class="fact"><b><span class="zh">金門電話</span><span class="en">Kinmen tel</span></b><span><a href="tel:082330575">(082) 330-575</a></span></div>
+          <div class="fact"><b><span class="zh">台北辦事處</span><span class="en">Taipei office</span></b><span><span class="zh">台北市大安區信義路四段 279 號 6 樓（合作文創）<br><a href="tel:0227017760">(02) 2701-7760</a></span><span class="en">6F, No. 279, Sec. 4, Xinyi Rd., Da'an, Taipei<br><a href="tel:+886227017760">+886 2 2701 7760</a></span></span></div>
+          <div class="fact"><b><span class="zh">台北營運處</span><span class="en">Taipei ops</span></b><span><span class="zh">台北市大同區市民大道一段 207 號 18 樓</span><span class="en">18F, No. 207, Sec. 1, Civic Blvd., Datong, Taipei</span></span></div>
+          <div class="fact"><b><span class="zh">客服專線</span><span class="en">Service line</span></b><span><a href="tel:0976336678">0976-336-678</a></span></div>
+        </div>
+      </div>
+
+      <!-- Company 2 -->
+      <div class="co sage">
+        <div class="co-top">
+          <div class="co-mark s">夏</div>
+          <div>
+            <h3>
+              <span class="zh">夏興客棧民宿</span>
+              <span class="en">Xiaxing Inn Guesthouse</span>
+              <small><span class="zh">家族經營 · 金門金湖鎮</span><span class="en">Family-run · Jinhu, Kinmen</span></small>
+            </h3>
+          </div>
+        </div>
+        <p>
+          <span class="zh">媽媽經營的民宿，就在金門金湖鎮夏興。走路能到的地方有老聚落、海邊和早餐店。除了住宿，也有房屋物件可以看、可以租。我負責網路上的照片、影片與訂房的事。</span>
+          <span class="en">My mother's guesthouse in Xiaxing, Jinhu Township, Kinmen — walking distance from the old village, the coast and a good breakfast shop. Beyond rooms, we also have property available to view and rent. I look after the photography, video and bookings online.</span>
+        </p>
+        <div>
+          <ul class="do-list">
+            <li><span class="zh">民宿訂房・長短期住宿</span><span class="en">Guesthouse rooms, short &amp; long stays</span></li>
+            <li><span class="zh">房屋物件出租・出售帶看</span><span class="en">Property rental &amp; sale viewings</span></li>
+            <li><span class="zh">金門在地行程建議</span><span class="en">Local Kinmen itinerary advice</span></li>
+            <li><span class="zh">團體・包棟接洽</span><span class="en">Group &amp; whole-house bookings</span></li>
+          </ul>
+        </div>
+        <div class="facts">
+          <div class="fact"><b><span class="zh">地址</span><span class="en">Address</span></b><span><span class="zh">金門縣金湖鎮夏興 27 號</span><span class="en">No. 27, Xiaxing, Jinhu Township, Kinmen</span></span></div>
+          <div class="fact"><b><span class="zh">訂房洽詢</span><span class="en">Bookings</span></b><span><a href="tel:0976534776">0976-534-776</a></span></div>
+          <div class="fact"><b><span class="zh">服務範圍</span><span class="en">Coverage</span></b><span><span class="zh">金門全島接送洽詢</span><span class="en">Island-wide pickup on request</span></span></div>
+          <div class="fact"><b><span class="zh">預約方式</span><span class="en">How to book</span></b><span><a href="#booking"><span class="zh">使用上方預約表單</span><span class="en">Use the booking form above</span></a></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow"><span class="zh">聯絡</span><span class="en">Contact</span></div>
+      <h2><span class="zh">找得到我們</span><span class="en">Find us</span></h2>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <div class="loc">
+          <h4><span class="zh">金門・公司設籍地</span><span class="en">Kinmen — registered office</span></h4>
+          <p><span class="zh">金門縣金城鎮前水頭 139-1 號 2 樓<br><a href="tel:082330575">(082) 330-575</a></span>
+             <span class="en">2F, No. 139-1, Qianshuitou, Jincheng Township, Kinmen<br><a href="tel:+886823305750">+886 82 330 575</a></span></p>
+        </div>
+        <div class="loc">
+          <h4><span class="zh">金門・夏興客棧民宿</span><span class="en">Kinmen — Xiaxing Inn</span></h4>
+          <p><span class="zh">金門縣金湖鎮夏興 27 號<br><a href="tel:0976534776">0976-534-776</a></span>
+             <span class="en">No. 27, Xiaxing, Jinhu Township, Kinmen<br><a href="tel:+886976534776">+886 976 534 776</a></span></p>
+        </div>
+      </div>
+      <div>
+        <div class="loc">
+          <h4><span class="zh">台北・辦事處（合作文創）</span><span class="en">Taipei — Da'an office</span></h4>
+          <p><span class="zh">台北市大安區信義路四段 279 號 6 樓<br><a href="tel:0227017760">(02) 2701-7760</a></span>
+             <span class="en">6F, No. 279, Sec. 4, Xinyi Rd., Da'an District, Taipei<br><a href="tel:+886227017760">+886 2 2701 7760</a></span></p>
+        </div>
+        <div class="loc">
+          <h4><span class="zh">台北・營運處</span><span class="en">Taipei — operations</span></h4>
+          <p><span class="zh">台北市大同區市民大道一段 207 號 18 樓<br>客服：<a href="tel:0976336678">0976-336-678</a></span>
+             <span class="en">18F, No. 207, Sec. 1, Civic Blvd., Datong District, Taipei<br>Service: <a href="tel:+886976336678">+886 976 336 678</a></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div>
+      <h5><span class="zh">晶鈺國際通商有限公司 × 夏興客棧民宿</span><span class="en">JingYu International × Xiaxing Inn</span></h5>
+      <p style="margin:0;color:#a99e93;max-width:34em">
+        <span class="zh">國際通商與數位行銷，金門民宿與房屋物件，以及一點點自己挑的東西。<br>統一編號 54379992</span>
+        <span class="en">International trade and digital marketing, a Kinmen guesthouse and property, and a few things we chose ourselves.<br>Tax ID 54379992</span>
+      </p>
+    </div>
+    <div>
+      <h5><span class="zh">網站</span><span class="en">Site</span></h5>
+      <ul>
+        <li><a href="#gallery"><span class="zh">藝廊</span><span class="en">Gallery</span></a></li>
+        <li><a href="#stay"><span class="zh">住宿・物件</span><span class="en">Stay &amp; Property</span></a></li>
+        <li><a href="#shop"><span class="zh">選物</span><span class="en">Shop</span></a></li>
+        <li><a href="#about"><span class="zh">關於我們</span><span class="en">About</span></a></li>
+      </ul>
+    </div>
+    <div>
+      <h5><span class="zh">聯絡</span><span class="en">Contact</span></h5>
+      <ul>
+        <li><a href="tel:082330575"><span class="zh">金門 (082) 330-575</span><span class="en">Kinmen +886 82 330 575</span></a></li>
+        <li><a href="tel:0227017760"><span class="zh">台北 (02) 2701-7760</span><span class="en">Taipei +886 2 2701 7760</span></a></li>
+        <li><a href="tel:0976336678"><span class="zh">客服 0976-336-678</span><span class="en">Service +886 976 336 678</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copy">© <span id="yr"></span> <span class="zh">晶鈺國際通商有限公司・夏興客棧民宿　版權所有</span><span class="en">JingYu International Trading Co., Ltd. &amp; Xiaxing Inn. All rights reserved.</span></div>
+</footer>
+
+<!-- ===================== OVERLAYS ===================== -->
+<div class="cartbar" id="cartBar">
+  <span id="cartTxt"></span>
+  <button id="cartGo"><span class="zh">送出詢問</span><span class="en">Send enquiry</span></button>
+</div>
+
+<div class="lb" id="lightbox">
+  <button class="lb-x" id="lbClose" aria-label="Close">×</button>
+  <div class="lb-in" id="lbIn"></div>
+</div>
+
+<div class="relax" id="relax">
+  <button class="exit" id="relaxExit" type="button">✕ <span class="zh">離開</span><span class="en">Exit</span></button>
+  <div class="hint"><span class="zh">點畫面任一處或按 Esc 也可以離開</span><span class="en">Click anywhere or press Esc to leave</span></div>
+  <div class="veil"></div>
+  <div class="cap" id="relaxCap"></div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="modal-in">
+    <button class="modal-x" id="modalX">×</button>
+    <h3 id="modalTitle"></h3>
+    <p class="note" id="modalNote"></p>
+    <textarea class="summary" id="modalBody" spellcheck="false"></textarea>
+    <p class="edit-hint" id="editHint"></p>
+    <div class="ok" id="modalOk" style="margin-top:14px"></div>
+    <div class="btnrow" style="margin-top:18px">
+      <button class="btn btn-primary btn-sm" id="copyBtn"></button>
+      <a class="btn btn-ghost btn-sm" id="lineBtn" href="#" target="_blank" rel="noopener"></a>
+      <a class="btn btn-ghost btn-sm" id="mailBtn" href="#" target="_blank" rel="noopener"></a>
+      <a class="btn btn-ghost btn-sm" id="telBtn" href="tel:0976336678"></a>
+    </div>
+    <p class="edit-hint" id="mailAlt" style="margin-top:12px"></p>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   內容設定 CONTENT — 想新增作品或商品，改這裡就好
+   To add work or products, edit the lists below.
+   img / src 留空 ('') 會自動顯示漂亮的色塊佔位圖
+   Leaving img/src empty shows a coloured placeholder tile
+   ========================================================= */
+
+const GALLERY = [
+  // kind: 'photo' | 'video' | 'music'
+  // video: youtube:'ID' 或 src:'my-film.mp4'
+  {kind:'video', youtube:'', src:'', img:'',
+   title:{zh:'夏興的一天',en:'A Day in Xiaxing'},
+   desc:{zh:'從清晨的巷子拍到傍晚的海。四分鐘。',en:'From morning lanes to the evening sea. Four minutes.'}},
+
+  {kind:'video', youtube:'', src:'', img:'',
+   title:{zh:'客棧・房間巡禮',en:'Inn Room Tour'},
+   desc:{zh:'夏興客棧每個房間的樣子。',en:'Every room at Xiaxing Inn.'}},
+
+  {kind:'music', src:'', img:'',
+   title:{zh:'風獅爺（Demo）',en:'Wind Lion God (Demo)'},
+   desc:{zh:'一段給金門寫的東西，還沒混完。',en:'Something written for Kinmen. Not finished mixing.'}},
+
+  {kind:'music', src:'', img:'',
+   title:{zh:'夜裡的市民大道',en:'Civic Boulevard at Night'},
+   desc:{zh:'加班回家路上錄的。',en:'Recorded walking home from a late shift.'}},
+
+  {kind:'photo', img:'',
+   title:{zh:'前水頭・老厝',en:'Qianshuitou Old Houses'},
+   desc:{zh:'紅磚、燕尾脊、下午三點的光。',en:'Red brick, swallowtail ridges, three o\'clock light.'}},
+
+  {kind:'photo', img:'',
+   title:{zh:'退潮',en:'Low Tide'},
+   desc:{zh:'海水退了以後留下的東西。',en:'What the water leaves behind.'}},
+
+  {kind:'photo', img:'',
+   title:{zh:'信義路四段',en:'Xinyi Road Sec. 4'},
+   desc:{zh:'辦公室樓下，等紅燈的人。',en:'Below the office, waiting for the light.'}},
+
+  {kind:'photo', img:'',
+   title:{zh:'客棧的早餐桌',en:'Breakfast at the Inn'},
+   desc:{zh:'豆漿、蛋餅、還有一隻不請自來的貓。',en:'Soy milk, egg crepe, and one uninvited cat.'}},
+
+  {kind:'photo', img:'',
+   title:{zh:'替代役的下午',en:'Afternoon, Service Year'},
+   desc:{zh:'手機、筆電、還有很多時間。',en:'A phone, a laptop, and a lot of time.'}}
+];
+
+const PROPERTIES = [
+  {cat:'room', img:'',
+   name:{zh:'夏興客棧・雙人房',en:'Xiaxing Inn — Double Room'},
+   where:{zh:'金門縣金湖鎮夏興 27 號',en:'No. 27, Xiaxing, Jinhu, Kinmen'},
+   price:{zh:'NT$1,800 / 晚起',en:'From NT$1,800 / night'},
+   desc:{zh:'安靜的角間，早上有光。含早餐與機場接送洽詢。',en:'A quiet corner room with morning light. Breakfast included; airport pickup on request.'},
+   tags:{zh:['2 人','含早餐','免費 Wi-Fi'],en:['2 guests','Breakfast','Free Wi-Fi']}},
+
+  {cat:'room', img:'',
+   name:{zh:'夏興客棧・四人家庭房',en:'Xiaxing Inn — Family Room'},
+   where:{zh:'金門縣金湖鎮夏興 27 號',en:'No. 27, Xiaxing, Jinhu, Kinmen'},
+   price:{zh:'NT$3,200 / 晚起',en:'From NT$3,200 / night'},
+   desc:{zh:'兩大床，適合帶小孩或朋友一起。可加床。',en:'Two large beds — good for families or friends travelling together. Extra bed available.'},
+   tags:{zh:['4 人','可加床','親子友善'],en:['4 guests','Extra bed','Family friendly']}},
+
+  {cat:'room', img:'',
+   name:{zh:'夏興客棧・包棟',en:'Xiaxing Inn — Whole House'},
+   where:{zh:'金門縣金湖鎮夏興 27 號',en:'No. 27, Xiaxing, Jinhu, Kinmen'},
+   price:{zh:'價格請洽詢',en:'Price on request'},
+   desc:{zh:'整棟給一團人，適合家族旅行、公司出遊或拍攝。',en:'The whole house for one group — family trips, company retreats or shoots.'},
+   tags:{zh:['10+ 人','含廚房','可拍攝'],en:['10+ guests','Kitchen','Filming OK']}},
+
+  {cat:'house', img:'',
+   name:{zh:'金湖鎮・整層住家出租',en:'Jinhu — Full Floor for Rent'},
+   where:{zh:'金門縣金湖鎮',en:'Jinhu Township, Kinmen'},
+   price:{zh:'租金請洽詢',en:'Rent on request'},
+   desc:{zh:'家族管理的物件，格局方正、生活機能好。歡迎約時間看房。',en:'Family-managed, well-proportioned and close to daily amenities. Viewings welcome.'},
+   tags:{zh:['整層','可短租','近市區'],en:['Whole floor','Short-term OK','Near town']}},
+
+  {cat:'house', img:'',
+   name:{zh:'金城鎮・店面 / 辦公空間',en:"Jincheng — Shop / Office Space"},
+   where:{zh:'金門縣金城鎮',en:'Jincheng Township, Kinmen'},
+   price:{zh:'洽詢',en:'On request'},
+   desc:{zh:'適合小型工作室、選物店或辦公使用。可談長約。',en:'Suited to a small studio, select shop or office. Long leases negotiable.'},
+   tags:{zh:['店面','辦公','長約可談'],en:['Retail','Office','Long lease']}}
+];
+
+const PRODUCTS = [
+  {cat:'cosmetic', img:'', price:'NT$680',
+   name:{zh:'保濕精華 30ml',en:'Hydrating Serum 30ml'},
+   desc:{zh:'冬天在金門也不緊繃。',en:'Holds up through a Kinmen winter.'}},
+  {cat:'cosmetic', img:'', price:'NT$450',
+   name:{zh:'溫和潔顏慕斯',en:'Gentle Cleansing Mousse'},
+   desc:{zh:'洗完不澀，敏感肌也可以。',en:'No tight feeling. Sensitive-skin friendly.'}},
+  {cat:'cosmetic', img:'', price:'NT$890',
+   name:{zh:'修護面霜 50ml',en:'Repair Cream 50ml'},
+   desc:{zh:'晚上厚敷，隔天有差。',en:'Layer it on at night; you notice by morning.'}},
+  {cat:'cosmetic', img:'', price:'NT$320',
+   name:{zh:'防曬乳 SPF50+',en:'Sunscreen SPF50+'},
+   desc:{zh:'海邊拍照必備，不油。',en:'Non-greasy — essential for shoots by the sea.'}},
+  {cat:'jewelry', img:'', price:'NT$1,280',
+   name:{zh:'925 銀細鍊項鍊',en:'925 Silver Fine Chain'},
+   desc:{zh:'很細，適合每天戴著不拿下來。',en:'Thin enough to leave on every day.'}},
+  {cat:'jewelry', img:'', price:'NT$980',
+   name:{zh:'珍珠耳環',en:'Pearl Earrings'},
+   desc:{zh:'一顆的那種，不會太隆重。',en:'Single pearl — never overdressed.'}},
+  {cat:'jewelry', img:'', price:'NT$1,650',
+   name:{zh:'手工銀戒',en:'Handmade Silver Ring'},
+   desc:{zh:'表面有槌打痕，每只不太一樣。',en:'Hammered surface; no two are alike.'}},
+  {cat:'other', img:'', price:'NT$550',
+   name:{zh:'金門風獅爺明信片組',en:'Kinmen Wind Lion Postcards'},
+   desc:{zh:'我拍的照片印的，一組八張。',en:'Printed from my own photographs. Set of eight.'}}
+];
+
+/* ============ 聯絡設定 CONTACT SETTINGS ============ */
+const CONTACT = {
+  email: 'gods6777@gmail.com',
+  tel:   '0976336678',
+  line:  ''   // 填入 LINE ID 就會出現 LINE 按鈕 / add a LINE ID to show a LINE button
+};
+
+/* =========================================================
+   以下為程式碼，通常不需要修改
+   Code below — you normally don't need to touch it
+   ========================================================= */
+(function(){
+  const $  = (s,r)=> (r||document).querySelector(s);
+  const $$ = (s,r)=> Array.from((r||document).querySelectorAll(s));
+  const root = document.documentElement;
+  let lang = 'zh';
+  const T = o => (o && (o[lang] || o.zh || o.en)) || '';
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  const KIND = {
+    video:{zh:'影片',en:'Video'},
+    music:{zh:'音樂',en:'Music'},
+    photo:{zh:'攝影',en:'Photo'}
+  };
+  const ICON = {video:'▶', music:'♪', photo:'▤'};
+  const SHADE = ['ph','ph b','ph c'];
+
+  function placeholder(i, icon){
+    return '<div class="'+SHADE[i%3]+'" style="height:100%"><span style="font-size:34px">'+icon+'</span></div>';
+  }
+  function mediaBox(item, i, icon){
+    return item.img
+      ? '<img src="'+esc(item.img)+'" alt="'+esc(T(item.name||item.title))+'" loading="lazy">'
+      : placeholder(i, icon);
+  }
+
+  /* ---------- GALLERY ---------- */
+  let galFilter = 'all';
+  const galFilterDefs = [
+    ['all',   {zh:'全部',en:'All'}],
+    ['video', {zh:'影片',en:'Video'}],
+    ['music', {zh:'音樂',en:'Music'}],
+    ['photo', {zh:'攝影',en:'Photo'}]
+  ];
+  function renderGalFilters(){
+    $('#galFilters').innerHTML = galFilterDefs.map(([k,l])=>
+      '<button class="chip'+(galFilter===k?' on':'')+'" data-k="'+k+'">'+esc(T(l))+'</button>').join('');
+  }
+  function renderGallery(){
+    const list = GALLERY.filter(g => galFilter==='all' || g.kind===galFilter);
+    $('#galGrid').innerHTML = list.map(g => {
+      const idx = GALLERY.indexOf(g);
+      const isVid = g.kind==='video';
+      return '<article class="card">'
+        + '<div class="card-media" data-gal="'+idx+'">'
+        +   '<span class="badge">'+esc(T(KIND[g.kind]))+'</span>'
+        +   mediaBox(g, idx, ICON[g.kind])
+        +   ((isVid||g.kind==='music') ? '<div class="play"><span>'+(isVid?'▶':'♪')+'</span></div>' : '')
+        + '</div>'
+        + '<div class="card-body"><h3>'+esc(T(g.title))+'</h3><p>'+esc(T(g.desc))+'</p></div>'
+        + '</article>';
+    }).join('');
+  }
+
+  /* ---------- PROPERTIES ---------- */
+  let propFilter = 'all';
+  const propFilterDefs = [
+    ['all',   {zh:'全部',en:'All'}],
+    ['room',  {zh:'民宿房型',en:'Inn rooms'}],
+    ['house', {zh:'房屋物件',en:'Property'}]
+  ];
+  function renderPropFilters(){
+    $('#propFilters').innerHTML = propFilterDefs.map(([k,l])=>
+      '<button class="chip'+(propFilter===k?' on':'')+'" data-k="'+k+'">'+esc(T(l))+'</button>').join('');
+  }
+  function renderProps(){
+    const list = PROPERTIES.filter(p => propFilter==='all' || p.cat===propFilter);
+    $('#propGrid').innerHTML = list.map((p,i) => {
+      const tags = (T(p.tags)||[]).map(t=>'<span class="tag">'+esc(t)+'</span>').join('');
+      return '<article class="card prop">'
+        + '<div class="card-media">'+mediaBox(p, i, p.cat==='room'?'⌂':'▦')+'</div>'
+        + '<div class="card-body">'
+        +   '<h3>'+esc(T(p.name))+'</h3>'
+        +   '<div class="row"><span>◎ '+esc(T(p.where))+'</span></div>'
+        +   '<p style="margin-top:6px">'+esc(T(p.desc))+'</p>'
+        +   '<div class="tags">'+tags+'</div>'
+        +   '<div class="meta"><span class="price">'+esc(T(p.price))+'</span>'
+        +     '<button class="btn btn-ghost btn-sm" data-book="'+esc(T(p.name))+'">'
+        +       (lang==='zh'?'預約這間':'Book this')+'</button></div>'
+        + '</div></article>';
+    }).join('');
+  }
+
+  /* ---------- SHOP ---------- */
+  let shopFilter = 'all';
+  const shopFilterDefs = [
+    ['all',      {zh:'全部',en:'All'}],
+    ['cosmetic', {zh:'保養彩妝',en:'Skincare'}],
+    ['jewelry',  {zh:'飾品',en:'Jewellery'}],
+    ['other',    {zh:'其他',en:'Other'}]
+  ];
+  const cart = {};
+  function renderShopFilters(){
+    $('#shopFilters').innerHTML = shopFilterDefs.map(([k,l])=>
+      '<button class="chip'+(shopFilter===k?' on':'')+'" data-k="'+k+'">'+esc(T(l))+'</button>').join('');
+  }
+  function renderShop(){
+    const list = PRODUCTS.filter(p => shopFilter==='all' || p.cat===shopFilter);
+    $('#shopGrid').innerHTML = list.map(p => {
+      const idx = PRODUCTS.indexOf(p);
+      const n = cart[idx]||0;
+      return '<article class="card">'
+        + '<div class="card-media" style="aspect-ratio:1/1">'+mediaBox(p, idx, p.cat==='jewelry'?'✦':'✿')+'</div>'
+        + '<div class="card-body">'
+        +   '<h3 style="font-size:15.5px">'+esc(T(p.name))+'</h3>'
+        +   '<p style="font-size:13.5px">'+esc(T(p.desc))+'</p>'
+        +   '<div class="meta"><span class="price">'+esc(p.price)+'</span>'
+        +     '<button class="btn '+(n?'btn-primary':'btn-ghost')+' btn-sm" data-add="'+idx+'">'
+        +       (n ? '✓ '+n : (lang==='zh'?'加入詢問':'Add'))+'</button></div>'
+        + '</div></article>';
+    }).join('');
+  }
+  function renderCart(){
+    const n = Object.values(cart).reduce((a,b)=>a+b,0);
+    const bar = $('#cartBar');
+    bar.classList.toggle('on', n>0);
+    $('#cartTxt').textContent = lang==='zh' ? ('已選 '+n+' 件商品') : (n+' item'+(n>1?'s':'')+' selected');
+  }
+
+  /* ---------- BOOKING ITEM SELECT ---------- */
+  function renderBookItems(){
+    const blank = lang==='zh' ? '— 不指定 —' : '— No preference —';
+    $('#bkItem').innerHTML = '<option value="">'+blank+'</option>'
+      + PROPERTIES.map(p=>'<option>'+esc(T(p.name))+'</option>').join('');
+  }
+
+  /* ---------- LIGHTBOX ---------- */
+  function openLightbox(i){
+    const g = GALLERY[i];
+    let media = '';
+    if (g.kind === 'video' && g.youtube)      media = '<iframe src="https://www.youtube.com/embed/'+esc(g.youtube)+'?rel=0" allow="accelerometer;autoplay;encrypted-media;picture-in-picture" allowfullscreen></iframe>';
+    else if (g.kind === 'video' && g.src)     media = '<video src="'+esc(g.src)+'" controls autoplay playsinline></video>';
+    else if (g.kind === 'music' && g.src)     media = '<div style="width:100%;padding:56px 22px;background:linear-gradient(150deg,#a86f4c,#6f7f6c);border-radius:12px;text-align:center"><div style="font-size:52px;color:#fff;margin-bottom:20px">♪</div><audio src="'+esc(g.src)+'" controls autoplay style="width:100%;max-width:460px"></audio></div>';
+    else if (g.img)                           media = '<img src="'+esc(g.img)+'" alt="'+esc(T(g.title))+'">';
+    else {
+      const msg = lang==='zh' ? '這一則還沒放上檔案 — 在程式最上方的 GALLERY 清單填入 img / src / youtube 就會出現。'
+                              : 'No file attached yet — add img / src / youtube to this entry in the GALLERY list at the top of the script.';
+      media = '<div style="width:100%;padding:74px 26px;background:linear-gradient(150deg,#a86f4c,#6f7f6c);border-radius:12px;text-align:center;color:#fff">'
+            + '<div style="font-size:56px;margin-bottom:14px">'+ICON[g.kind]+'</div>'
+            + '<div style="font-size:14px;opacity:.9;max-width:34em;margin:0 auto;line-height:1.7">'+esc(msg)+'</div></div>';
+    }
+    $('#lbIn').innerHTML = media
+      + '<div class="lb-cap"><b>'+esc(T(g.title))+'</b><small>'+esc(T(g.desc))+'</small></div>';
+    $('#lightbox').classList.add('on');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(){
+    $('#lightbox').classList.remove('on');
+    $('#lbIn').innerHTML = '';
+    document.body.style.overflow = '';
+  }
+
+  /* ---------- RELAX MODE ---------- */
+  let relaxTimer = null, relaxIdx = 0;
+  const relaxItems = GALLERY.filter(g => g.kind === 'photo');
+  function buildRelaxSlides(){
+    const host = $('#relax');
+    $$('.slide', host).forEach(el => el.remove());
+    relaxItems.forEach((g,i) => {
+      const d = document.createElement('div');
+      d.className = 'slide';
+      d.style.background = g.img
+        ? "url('"+g.img+"') center/cover no-repeat"
+        : ['linear-gradient(150deg,#c9a685,#a86f4c 55%,#7f8f7b)',
+           'linear-gradient(150deg,#adbfa8,#6f7f6c 60%,#a86f4c)',
+           'linear-gradient(150deg,#e0c6ab,#c08e63)'][i%3];
+      host.insertBefore(d, host.firstChild);
+    });
+  }
+  function relaxShow(i){
+    const slides = $$('#relax .slide');
+    if (!slides.length) return;
+    slides.forEach(s => s.classList.remove('on'));
+    slides[i].classList.add('on');
+    const g = relaxItems[i];
+    $('#relaxCap').innerHTML = '<b>'+esc(T(g.title))+'</b><small>'+esc(T(g.desc))+'</small>';
+  }
+  function openRelax(){
+    if (!relaxItems.length) return;
+    buildRelaxSlides();
+    relaxIdx = 0; relaxShow(0);
+    $('#relax').classList.add('on');
+    document.body.style.overflow = 'hidden';
+    relaxTimer = setInterval(()=>{ relaxIdx = (relaxIdx+1) % relaxItems.length; relaxShow(relaxIdx); }, 6500);
+  }
+  function closeRelax(){
+    clearInterval(relaxTimer); relaxTimer = null;
+    $('#relax').classList.remove('on');
+    document.body.style.overflow = '';
+  }
+
+  /* ---------- MESSAGE MODAL ---------- */
+  let modalSubject = '';
+  const modalTextNow = () => $('#modalBody').value;
+  function syncMail(){
+    const body = encodeURIComponent(modalTextNow());
+    const subj = encodeURIComponent(modalSubject);
+    // Gmail 網頁版 — 一定打得開，不需要電腦設定郵件軟體
+    $('#mailBtn').href = 'https://mail.google.com/mail/?view=cm&fs=1&to='
+      + encodeURIComponent(CONTACT.email) + '&su=' + subj + '&body=' + body;
+    // LINE 直接帶入訊息
+    $('#lineBtn').href = 'https://line.me/R/msg/text/?' + body;
+    // 給有設定郵件軟體的人的備用連結
+    $('#mailAlt').innerHTML = (lang==='zh'
+        ? '沒有 Gmail？ <a href="MAILTO">用電腦的郵件軟體開啟</a>，或直接寄到 '
+        : 'No Gmail? <a href="MAILTO">Open your mail app</a>, or just write to ')
+      + '<b>' + CONTACT.email + '</b>';
+    $('#mailAlt').innerHTML = $('#mailAlt').innerHTML.replace('MAILTO',
+      'mailto:' + CONTACT.email + '?subject=' + subj + '&body=' + body);
+  }
+  function showModal(title, note, text, subject){
+    modalSubject = subject;
+    $('#modalTitle').textContent = title;
+    $('#modalNote').textContent  = note;
+    $('#modalBody').value        = text;
+    $('#editHint').textContent   = lang==='zh'
+      ? '✎ 這格可以直接打字修改 — 填上你的姓名、電話與地址再複製。'
+      : '✎ You can type directly in this box — add your name, phone and address before copying.';
+    $('#modalOk').classList.remove('on');
+    $('#copyBtn').textContent = lang==='zh' ? '複製訊息' : 'Copy message';
+    $('#lineBtn').textContent = lang==='zh' ? '用 LINE 傳送' : 'Send via LINE';
+    $('#mailBtn').textContent = lang==='zh' ? '用 Gmail 寄出' : 'Send with Gmail';
+    $('#telBtn').textContent  = lang==='zh' ? '直接打電話' : 'Call us';
+    $('#telBtn').href  = 'tel:'+CONTACT.tel;
+    syncMail();
+    $('#modal').classList.add('on');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    $('#modal').classList.remove('on');
+    document.body.style.overflow = '';
+  }
+  function copyText(t){
+    const done = ()=>{ const o=$('#modalOk'); o.textContent = lang==='zh'?'✓ 已複製，貼到 LINE 或簡訊傳給我們就可以了。':'✓ Copied. Paste it into LINE or a text message and send.'; o.classList.add('on'); };
+    if (navigator.clipboard && window.isSecureContext){
+      navigator.clipboard.writeText(t).then(done).catch(fallback);
+    } else fallback();
+    function fallback(){
+      const ta = document.createElement('textarea');
+      ta.value = t; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); done(); }
+      catch(e){ const o=$('#modalOk'); o.textContent = lang==='zh'?'請手動選取上面的文字複製。':'Please select the text above and copy manually.'; o.classList.add('on'); }
+      document.body.removeChild(ta);
+    }
+  }
+
+  /* ---------- EVENTS ---------- */
+  $('#galFilters').addEventListener('click', e => {
+    const b = e.target.closest('[data-k]'); if(!b) return;
+    galFilter = b.dataset.k; renderGalFilters(); renderGallery();
+  });
+  $('#propFilters').addEventListener('click', e => {
+    const b = e.target.closest('[data-k]'); if(!b) return;
+    propFilter = b.dataset.k; renderPropFilters(); renderProps();
+  });
+  $('#shopFilters').addEventListener('click', e => {
+    const b = e.target.closest('[data-k]'); if(!b) return;
+    shopFilter = b.dataset.k; renderShopFilters(); renderShop();
+  });
+  $('#galGrid').addEventListener('click', e => {
+    const m = e.target.closest('[data-gal]'); if(!m) return;
+    openLightbox(+m.dataset.gal);
+  });
+  $('#propGrid').addEventListener('click', e => {
+    const b = e.target.closest('[data-book]'); if(!b) return;
+    const name = b.dataset.book;
+    const sel = $('#bkItem');
+    for (const o of sel.options) if (o.value === name || o.text === name) { sel.value = o.value; break; }
+    $('#bkType').selectedIndex = name.indexOf('客棧')>-1 || name.toLowerCase().indexOf('inn')>-1 ? 0 : 1;
+    document.getElementById('booking').scrollIntoView({behavior:'smooth'});
+    setTimeout(()=>$('#bkName').focus(), 600);
+  });
+  $('#shopGrid').addEventListener('click', e => {
+    const b = e.target.closest('[data-add]'); if(!b) return;
+    const i = +b.dataset.add;
+    cart[i] = (cart[i]||0) + 1;
+    renderShop(); renderCart();
+  });
+  $('#cartGo').addEventListener('click', () => {
+    const lines = Object.keys(cart).filter(k=>cart[k]>0).map(k => {
+      const p = PRODUCTS[k];
+      return '· ' + T(p.name) + ' ×' + cart[k] + '  (' + p.price + ')';
+    });
+    if (!lines.length) return;
+    const head = lang==='zh' ? '【商品詢問】\n我想詢問以下商品的庫存與運費：\n' : '[Product enquiry]\nI\'d like to ask about stock and shipping for:\n';
+    const foot = lang==='zh' ? '\n\n姓名：\n電話 / LINE：\n寄送地址：' : '\n\nName:\nPhone / LINE:\nShipping address:';
+    showModal(
+      lang==='zh' ? '你的商品清單' : 'Your enquiry list',
+      lang==='zh' ? '複製這段文字傳給我們，或直接用 Email 送出。我們會回覆庫存、運費與付款方式。' : 'Copy this and send it to us, or email it directly. We\'ll reply with stock, shipping and payment details.',
+      head + lines.join('\n') + foot,
+      lang==='zh' ? '商品詢問 — 晶鈺選物' : 'Product enquiry — JingYu Selections'
+    );
+  });
+  $('#bookForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const v = id => ($(id).value||'').trim();
+    const L = lang==='zh';
+    const dash = L ? '（未填）' : '(not given)';
+    const text =
+      (L ? '【預約申請】\n' : '[Booking request]\n') +
+      (L ? '項目：' : 'For: ')      + ($('#bkType').value || dash) + '\n' +
+      (L ? '指定：' : 'Item: ')     + (v('#bkItem')   || (L?'不指定':'No preference')) + '\n' +
+      (L ? '稱呼：' : 'Name: ')     + (v('#bkName')   || dash) + '\n' +
+      (L ? '電話：' : 'Phone: ')    + (v('#bkPhone')  || dash) + '\n' +
+      (L ? '日期：' : 'Date: ')     + (v('#bkDate')   || dash) + '\n' +
+      (L ? '人數/晚數：' : 'Guests/nights: ') + (v('#bkPeople') || dash) + '\n' +
+      (L ? '備註：' : 'Notes: ')    + (v('#bkNote')   || '—');
+    showModal(
+      L ? '你的預約訊息' : 'Your booking message',
+      L ? '複製這段訊息用 LINE 或簡訊傳給我們，或直接用 Email 送出。收到後我們會盡快回覆確認。' : 'Copy this and send it by LINE or text, or email it directly. We\'ll confirm as soon as we see it.',
+      text,
+      L ? '預約申請 — 夏興客棧 / 晶鈺' : 'Booking request — Xiaxing Inn / JingYu'
+    );
+  });
+  $('#copyBtn').addEventListener('click', ()=>copyText(modalTextNow()));
+  $('#modalBody').addEventListener('input', ()=>{ syncMail(); $('#modalOk').classList.remove('on'); });
+  $('#modalX').addEventListener('click', closeModal);
+  $('#modal').addEventListener('click', e => { if(e.target.id==='modal') closeModal(); });
+  $('#lbClose').addEventListener('click', closeLightbox);
+  $('#lightbox').addEventListener('click', e => { if(e.target.id==='lightbox') closeLightbox(); });
+  $('#relaxOpen').addEventListener('click', openRelax);
+  $('#relaxExit').addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); closeRelax(); });
+  $('#relax').addEventListener('click', closeRelax);   // clicking anywhere also leaves
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    closeLightbox(); closeRelax(); closeModal();
+  });
+  $('#menuToggle').addEventListener('click', ()=> $('#navLinks').classList.toggle('open'));
+  $$('#navLinks a').forEach(a => a.addEventListener('click', ()=> $('#navLinks').classList.remove('open')));
+
+  /* ---------- LANGUAGE ---------- */
+  $('#langBtn').addEventListener('click', () => {
+    lang = (lang === 'zh') ? 'en' : 'zh';
+    root.setAttribute('data-lang', lang);
+    root.setAttribute('lang', lang === 'zh' ? 'zh-Hant' : 'en');
+    $('#langBtn').textContent = lang === 'zh' ? 'EN' : '中文';
+    renderAll();
+  });
+
+  function renderAll(){
+    renderGalFilters(); renderGallery();
+    renderPropFilters(); renderProps();
+    renderShopFilters(); renderShop(); renderCart();
+    renderBookItems();
+  }
+
+  $('#yr').textContent = new Date().getFullYear();
+  renderAll();
+})();
+</script>
+</body>
+</html>
