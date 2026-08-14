@@ -774,7 +774,13 @@ const PRODUCTS = [
    desc:{zh:'表面有槌打痕，每只不太一樣。',en:'Hammered surface; no two are alike.'}},
   {cat:'other', img:'', price:'NT$550',
    name:{zh:'金門風獅爺明信片組',en:'Kinmen Wind Lion Postcards'},
-   desc:{zh:'我拍的照片印的，一組八張。',en:'Printed from my own photographs. Set of eight.'}}
+   desc:{zh:'我拍的照片印的，一組八張。',en:'Printed from my own photographs. Set of eight.'}},
+  {cat:'other', img:'nobel-card.jpg', price:'洽詢 On request',
+   name:{zh:'精醇能量飲 10 包',en:'Nobel Energy Drink · 10 sachets'},
+   desc:{zh:'綠花椰菜與法國葡萄萃取，一盒十包，每天一包沖水喝。',en:'Broccoli and France grape extract. Ten sachets; one a day, mixed with water.'}},
+  {cat:'other', img:'ginger-poster.png', ratio:'1054/1492', price:'洽詢 On request',
+   name:{zh:'薑皇王 300 粒',en:'Ukon King · 300 capsules'},
+   desc:{zh:'日本甘味人生，六種薑黃複方，一盒 300 粒。',en:'A six-turmeric blend from 甘味人生, Japan. 300 capsules.'}}
 ];
 
 /* ============ 聯絡設定 CONTACT SETTINGS ============ */
@@ -889,7 +895,7 @@ const CONTACT = {
       const idx = PRODUCTS.indexOf(p);
       const n = cart[idx]||0;
       return '<article class="card">'
-        + '<div class="card-media" style="aspect-ratio:1/1">'+mediaBox(p, idx, p.cat==='jewelry'?'✦':'✿')+'</div>'
+        + '<div class="card-media" style="aspect-ratio:'+(p.ratio||'1/1')+'">'+mediaBox(p, idx, p.cat==='jewelry'?'✦':'✿')+'</div>'
         + '<div class="card-body">'
         +   '<h3 style="font-size:15.5px">'+esc(T(p.name))+'</h3>'
         +   '<p style="font-size:13.5px">'+esc(T(p.desc))+'</p>'
