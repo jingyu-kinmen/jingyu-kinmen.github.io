@@ -82,6 +82,16 @@ nav.links a:hover{background:var(--bg-2);color:var(--ink)}
 }
 .btn-primary{background:var(--accent);color:#fff}
 .btn-primary:hover{background:var(--accent-dark);transform:translateY(-1px)}
+.path-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 0 20px;max-width:620px}
+.path-card{appearance:none;width:100%;border:1px solid var(--line);border-radius:13px;padding:13px 14px;text-align:left;text-decoration:none;font:inherit;cursor:pointer;transition:.18s;background:var(--card);color:var(--ink)}
+.path-card:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--path)}
+.path-card b{display:block;font-size:14.5px;line-height:1.35;color:var(--path)}
+.path-card small{display:block;margin-top:3px;color:var(--ink-soft);font-size:12.5px;line-height:1.4}
+.path-card.art{--path:#6f7f6c;background:#f1f4ef}
+.path-card.stay{--path:#42665d;background:#eef3f0}
+.path-card.shop{--path:#a86f4c;background:#fbf3eb}
+.path-card.relax{--path:#756b62;background:#f5f1ec}
+@media(max-width:460px){.path-grid{grid-template-columns:1fr}.path-card{padding:14px 16px}}
 .btn-ghost{background:var(--card);border-color:var(--line);color:var(--ink)}
 .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
 .btn-sm{font-size:13.5px;padding:9px 16px;border-radius:9px}
@@ -342,10 +352,15 @@ textarea.summary:focus{outline:none;border-color:var(--accent);background:var(--
         <span class="zh">這裡收著我們拍的影片、寫的音樂、按下的快門，也放著金門夏興客棧的房間、家裡的房屋物件，還有一些自己挑的保養品與飾品。喜歡就留下來逛，想聊再找我們。</span>
         <span class="en">A quiet place for the films, music and photographs we've made — alongside rooms at Xiaxing Inn in Kinmen, family property listings, and a small selection of skincare and jewellery. Stay as long as you like. Reach out only if you want to.</span>
       </p>
+      <div class="path-grid" aria-label="網站導覽">
+        <a class="path-card art" href="#gallery"><b><span class="zh">作品集</span><span class="en">Artwork</span></b><small><span class="zh">看影片、聽音樂、逛攝影</span><span class="en">Watch, listen and look around</span></small></a>
+        <a class="path-card stay" href="#stay"><b><span class="zh">住宿・看房</span><span class="en">Stay &amp; property</span></b><small><span class="zh">訂房或預約看房</span><span class="en">Book a room or viewing</span></small></a>
+        <a class="path-card shop" href="#shop"><b><span class="zh">逛選物</span><span class="en">Selections</span></b><small><span class="zh">我們自己挑、自己用的東西</span><span class="en">Small things we genuinely choose</span></small></a>
+        <button class="path-card relax" id="relaxOpen" type="button"><b><span class="zh">慢慢看</span><span class="en">Take your time</span></b><small><span class="zh">全螢幕看作品、放鬆一下</span><span class="en">Full-screen art and a quieter moment</span></small></button>
+      </div>
       <div class="btnrow">
-        <a class="btn btn-primary" href="#gallery"><span class="zh">看作品</span><span class="en">View the work</span></a>
-        <button class="btn btn-ghost" id="relaxOpen">◐ <span class="zh">靜靜看（全螢幕）</span><span class="en">Relax mode</span></button>
-        <a class="btn btn-ghost" href="#booking"><span class="zh">預約看房・訂房</span><span class="en">Book a visit</span></a>
+        <a class="btn btn-ghost btn-sm" href="#about"><span class="zh">認識我們</span><span class="en">About us</span></a>
+        <a class="btn btn-ghost btn-sm" href="#booking"><span class="zh">直接預約</span><span class="en">Make an enquiry</span></a>
       </div>
     </div>
     <div class="hero-art" aria-hidden="true">
