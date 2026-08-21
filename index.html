@@ -82,16 +82,6 @@ nav.links a:hover{background:var(--bg-2);color:var(--ink)}
 }
 .btn-primary{background:var(--accent);color:#fff}
 .btn-primary:hover{background:var(--accent-dark);transform:translateY(-1px)}
-.path-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 0 20px;max-width:620px}
-.path-card{appearance:none;width:100%;border:1px solid var(--line);border-radius:13px;padding:13px 14px;text-align:left;text-decoration:none;font:inherit;cursor:pointer;transition:.18s;background:var(--card);color:var(--ink)}
-.path-card:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--path)}
-.path-card b{display:block;font-size:14.5px;line-height:1.35;color:var(--path)}
-.path-card small{display:block;margin-top:3px;color:var(--ink-soft);font-size:12.5px;line-height:1.4}
-.path-card.art{--path:#6f7f6c;background:#f1f4ef}
-.path-card.stay{--path:#42665d;background:#eef3f0}
-.path-card.shop{--path:#a86f4c;background:#fbf3eb}
-.path-card.relax{--path:#756b62;background:#f5f1ec}
-@media(max-width:460px){.path-grid{grid-template-columns:1fr}.path-card{padding:14px 16px}}
 .btn-ghost{background:var(--card);border-color:var(--line);color:var(--ink)}
 .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
 .btn-sm{font-size:13.5px;padding:9px 16px;border-radius:9px}
@@ -227,6 +217,62 @@ footer ul{list-style:none;padding:0;margin:0;display:grid;gap:7px}
 .lb-cap{color:#f2ebe2;text-align:center}
 .lb-cap b{display:block;font-size:17px;margin-bottom:4px}
 .lb-cap small{color:#a99e93;font-size:13.5px}
+.path-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 0 20px;max-width:620px}
+.path-card{appearance:none;width:100%;border:1px solid var(--line);border-radius:13px;padding:13px 14px;text-align:left;text-decoration:none;font:inherit;cursor:pointer;transition:.18s;background:var(--card);color:var(--ink)}
+.path-card:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--path)}
+.path-card b{display:block;font-size:14.5px;line-height:1.35;color:var(--path)}
+.path-card small{display:block;margin-top:3px;color:var(--ink-soft);font-size:12.5px;line-height:1.4}
+.path-card.art{--path:#6f7f6c;background:#f1f4ef}
+.path-card.stay{--path:#42665d;background:#eef3f0}
+.path-card.shop{--path:#a86f4c;background:#fbf3eb}
+.path-card.path-quiet{--path:#756b62;background:#f5f1ec}
+@media(max-width:460px){.path-grid{grid-template-columns:1fr}.path-card{padding:14px 16px}}
+/* ---------- short looping clips ---------- */
+.card-media video.loopclip{width:100%;height:100%;object-fit:cover;display:block;background:#efe6da}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero-art.has-video{position:relative;overflow:hidden;border-radius:var(--radius);min-height:340px}
+.hero-art.has-video .tile{display:none}
+@media(prefers-reduced-motion:reduce){.card-media video.loopclip,.hero-video{display:none}}
+
+/* ---------- expand / detail view ---------- */
+.lb-in.wide{max-width:1080px}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;background:rgba(20,17,14,.55);color:#f2ebe2;border:1px solid rgba(242,235,226,.22);width:46px;height:46px;border-radius:50%;font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s}
+.lb-nav:hover{background:rgba(20,17,14,.9)}
+.lb-prev{left:16px}.lb-next{right:16px}
+.lbd{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;width:100%;background:#fffdfa;border-radius:16px;overflow:hidden;max-height:84vh}
+.lbd-media{background:#f3ece2;display:flex;flex-direction:column;gap:10px;padding:14px}
+.lbd-main{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;border-radius:12px;overflow:hidden;background:#efe6da}
+.lb-in .lbd-main img{width:100%;height:100%;max-height:70vh;object-fit:cover;border-radius:12px;background:#efe6da}
+.lbd-main .ph,.lbd-main .ph.b,.lbd-main .ph.c{width:100%;min-height:340px;display:flex;align-items:center;justify-content:center;font-size:44px}
+.lbd-thumbs{display:flex;gap:8px;flex-wrap:wrap}
+.lb-in .lbd-thumbs img{width:62px;height:62px;object-fit:cover;border-radius:8px;cursor:pointer;opacity:.55;border:2px solid transparent;transition:.2s}
+.lb-in .lbd-thumbs img.on,.lb-in .lbd-thumbs img:hover{opacity:1;border-color:var(--accent)}
+.lbd-info{padding:30px 30px 30px 4px;overflow-y:auto;color:var(--ink)}
+.lbd-info .eyebrow{margin-bottom:10px}
+.lbd-info h3{font-family:var(--serif,Georgia,serif);font-size:24px;margin:0 0 10px;line-height:1.3}
+.lbd-info .where{color:var(--muted);font-size:13.5px;margin:0 0 14px}
+.lbd-info p.body{color:var(--ink-soft);font-size:14.5px;line-height:1.85;margin:0 0 16px}
+.lbd-info .price{font-size:19px;font-weight:600;color:var(--accent-dark);display:block;margin-bottom:18px}
+.lbd-sec{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.lbd-sec h4{font-size:11px;letter-spacing:.15em;color:var(--muted);margin:0 0 11px;font-weight:600}
+.lbd-facts{margin:0;display:grid;gap:9px}
+.lbd-facts>div{display:grid;grid-template-columns:88px 1fr;gap:12px;font-size:13.5px;align-items:start}
+.lbd-facts dt{color:var(--muted);margin:0}
+.lbd-facts dd{margin:0;color:var(--ink-soft);line-height:1.6}
+.lbd-amen{display:flex;flex-wrap:wrap;gap:7px}
+.lbd-amen span{font-size:12.5px;color:var(--ink-soft);background:var(--bg-2);border:1px solid var(--line);border-radius:999px;padding:5px 11px}
+.lbd-sec p{font-size:13.5px;line-height:1.85;color:var(--ink-soft);margin:0}
+.lbd-map{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--accent-dark);text-decoration:none;margin-top:12px;border-bottom:1px solid var(--line)}
+.lbd-map:hover{border-color:var(--accent)}
+.lbd-info .btnrow{position:sticky;top:0;background:var(--card);padding:6px 0 14px;z-index:1}
+.lbd-note{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px;line-height:1.7}
+@media(max-width:820px){
+  .lbd{grid-template-columns:1fr;max-height:86vh;overflow-y:auto}
+  .lbd-info{padding:0 22px 26px}
+  .lb-in .lbd-main img{max-height:44vh}
+  .lb-nav{width:38px;height:38px;font-size:17px}
+  .lb-prev{left:6px}.lb-next{right:6px}
+}
 .lb-x{position:absolute;top:20px;right:24px;background:none;border:0;color:#fff;font-size:32px;cursor:pointer;line-height:1;opacity:.75}
 .lb-x:hover{opacity:1}
 
@@ -356,7 +402,7 @@ textarea.summary:focus{outline:none;border-color:var(--accent);background:var(--
         <a class="path-card art" href="#gallery"><b><span class="zh">作品集</span><span class="en">Artwork</span></b><small><span class="zh">看影片、聽音樂、逛攝影</span><span class="en">Watch, listen and look around</span></small></a>
         <a class="path-card stay" href="#stay"><b><span class="zh">住宿・看房</span><span class="en">Stay &amp; property</span></b><small><span class="zh">訂房或預約看房</span><span class="en">Book a room or viewing</span></small></a>
         <a class="path-card shop" href="#shop"><b><span class="zh">逛選物</span><span class="en">Selections</span></b><small><span class="zh">我們自己挑、自己用的東西</span><span class="en">Small things we genuinely choose</span></small></a>
-        <button class="path-card relax" id="relaxOpen" type="button"><b><span class="zh">慢慢看</span><span class="en">Take your time</span></b><small><span class="zh">全螢幕看作品、放鬆一下</span><span class="en">Full-screen art and a quieter moment</span></small></button>
+        <button class="path-card path-quiet" id="relaxOpen" type="button"><b><span class="zh">慢慢看</span><span class="en">Take your time</span></b><small><span class="zh">全螢幕看作品、放鬆一下</span><span class="en">Full-screen art and a quieter moment</span></small></button>
       </div>
       <div class="btnrow">
         <a class="btn btn-ghost btn-sm" href="#about"><span class="zh">認識我們</span><span class="en">About us</span></a>
@@ -652,6 +698,8 @@ textarea.summary:focus{outline:none;border-color:var(--accent);background:var(--
 
 <div class="lb" id="lightbox">
   <button class="lb-x" id="lbClose" aria-label="Close">×</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Next">›</button>
   <div class="lb-in" id="lbIn"></div>
 </div>
 
@@ -682,6 +730,24 @@ textarea.summary:focus{outline:none;border-color:var(--accent);background:var(--
 
 <script>
 /* =========================================================
+   ◇ 關於展開視窗裡的細節欄位：
+      我只留下能從原本網站內容推得的項目，其他一律留空 —
+      空的欄位不會顯示，所以網站上看不到任何假資料。
+      還沒填的有：坪數・樓層・入住退房時間・押金・租期・水電費・
+      附近車程・保養品成分與容量・運費規則。想加就直接填進去。
+      有幾項（獨立衛浴、電視、吹風機、床型）是我依常見民宿配備推測的，
+      請順手確認一下對不對。
+   ◇ Detail fields: only items derivable from your existing copy were
+      kept; everything else is blank, and blank fields do not render —
+      so nothing false is shown. A few (private bathroom, TV, hairdryer,
+      bed type) are reasonable guesses — please confirm them.
+
+   影片怎麼放 / How to add video:
+     YouTube（建議，長片用這個）→  {kind:'video', youtube:'影片ID', img:'封面.jpg', ...}
+       影片 ID 是網址 youtu.be/ 後面那一串
+     自己的檔案（只建議放 10 秒內的短片）→ {kind:'video', src:'my-clip.mp4', ...}
+   =========================================================
+
    內容設定 CONTENT — 想新增作品或商品，改這裡就好
    To add work or products, edit the lists below.
    img / src 留空 ('') 會自動顯示漂亮的色塊佔位圖
@@ -690,7 +756,9 @@ textarea.summary:focus{outline:none;border-color:var(--accent);background:var(--
 
 const GALLERY = [
   // kind: 'photo' | 'video' | 'music'
-  // video: youtube:'ID' 或 src:'my-film.mp4'
+  // video: youtube:'ID'（長片）或 src:'my-film.mp4'（自己的檔案）
+  // loop:true  → 15–30 秒的無聲短片，會直接在格子裡靜音循環播放
+  //              short silent clip; plays muted on a loop in the grid
   {kind:'video', youtube:'', src:'', img:'',
    title:{zh:'夏興的一天',en:'A Day in Xiaxing'},
    desc:{zh:'從清晨的巷子拍到傍晚的海。四分鐘。',en:'From morning lanes to the evening sea. Four minutes.'}},
@@ -728,78 +796,209 @@ const GALLERY = [
    desc:{zh:'手機、筆電、還有很多時間。',en:'A phone, a laptop, and a lot of time.'}}
 ];
 
+/* ---------------------------------------------------------
+   空的欄位不會顯示，放心留白，之後想到再補。
+   Empty fields simply do not render — leave them blank until you know.
+   多張照片：imgs:['a.jpg','b.jpg','c.jpg']
+   --------------------------------------------------------- */
 const PROPERTIES = [
-  {cat:'room', img:'',
+  {cat:'room', img:'', imgs:[],
    name:{zh:'夏興客棧・雙人房',en:'Xiaxing Inn — Double Room'},
    where:{zh:'金門縣金湖鎮夏興 27 號',en:'No. 27, Xiaxing, Jinhu, Kinmen'},
    price:{zh:'NT$1,800 / 晚起',en:'From NT$1,800 / night'},
    desc:{zh:'安靜的角間，早上有光。含早餐與機場接送洽詢。',en:'A quiet corner room with morning light. Breakfast included; airport pickup on request.'},
-   tags:{zh:['2 人','含早餐','免費 Wi-Fi'],en:['2 guests','Breakfast','Free Wi-Fi']}},
+   tags:{zh:['2 人','含早餐','免費 Wi-Fi'],en:['2 guests','Breakfast','Free Wi-Fi']},
+   facts:{zh:[['格局','套房・獨立衛浴'],['床型','雙人床 ×1'],['可住人數','2 人（不加床）']],
+          en:[['Layout','En-suite studio'],['Bed','1 double'],['Sleeps','2 (no extra bed)']]},
+   amen:{zh:['冷氣','免費 Wi-Fi','獨立衛浴','熱水 24 小時','電視','吹風機'],
+         en:['Air-con','Free Wi-Fi','Private bathroom','24h hot water','TV','Hairdryer']},
+   rules:{zh:[],
+          en:[]},
+   near:{zh:[],
+         en:[]},
+   map:'https://www.google.com/maps/search/?api=1&query=金門縣金湖鎮夏興27號'},
 
-  {cat:'room', img:'',
+  {cat:'room', img:'', imgs:[],
    name:{zh:'夏興客棧・四人家庭房',en:'Xiaxing Inn — Family Room'},
    where:{zh:'金門縣金湖鎮夏興 27 號',en:'No. 27, Xiaxing, Jinhu, Kinmen'},
    price:{zh:'NT$3,200 / 晚起',en:'From NT$3,200 / night'},
    desc:{zh:'兩大床，適合帶小孩或朋友一起。可加床。',en:'Two large beds — good for families or friends travelling together. Extra bed available.'},
-   tags:{zh:['4 人','可加床','親子友善'],en:['4 guests','Extra bed','Family friendly']}},
+   tags:{zh:['4 人','可加床','親子友善'],en:['4 guests','Extra bed','Family friendly']},
+   facts:{zh:[['格局','套房・獨立衛浴'],['床型','雙人床 ×2'],['可住人數','4 人（可加床至 5 人）']],
+          en:[['Layout','En-suite family room'],['Beds','2 doubles'],['Sleeps','4 (5 with extra bed)']]},
+   amen:{zh:['冷氣','免費 Wi-Fi','獨立衛浴','熱水 24 小時','電視','吹風機'],
+         en:['Air-con','Free Wi-Fi','Private bathroom','24h hot water','TV','Hairdryer']},
+   rules:{zh:[],
+          en:[]},
+   near:{zh:[],
+         en:[]},
+   map:'https://www.google.com/maps/search/?api=1&query=金門縣金湖鎮夏興27號'},
 
-  {cat:'room', img:'',
+  {cat:'room', img:'', imgs:[],
    name:{zh:'夏興客棧・包棟',en:'Xiaxing Inn — Whole House'},
    where:{zh:'金門縣金湖鎮夏興 27 號',en:'No. 27, Xiaxing, Jinhu, Kinmen'},
    price:{zh:'價格請洽詢',en:'Price on request'},
    desc:{zh:'整棟給一團人，適合家族旅行、公司出遊或拍攝。',en:'The whole house for one group — family trips, company retreats or shoots.'},
-   tags:{zh:['10+ 人','含廚房','可拍攝'],en:['10+ guests','Kitchen','Filming OK']}},
+   tags:{zh:['10+ 人','含廚房','可拍攝'],en:['10+ guests','Kitchen','Filming OK']},
+   facts:{zh:[],
+          en:[]},
+   amen:{zh:['冷氣','免費 Wi-Fi','開放廚房','洗衣機','客廳','可拍攝・可辦活動'],
+         en:['Air-con','Free Wi-Fi','Open kitchen','Washing machine','Living room','Shoots & events OK']},
+   rules:{zh:[['其他','拍攝與活動請先告知用途']],
+          en:[['Note','Tell us in advance for shoots or events']]},
+   near:{zh:[],
+         en:[]},
+   map:'https://www.google.com/maps/search/?api=1&query=金門縣金湖鎮夏興27號'},
 
-  {cat:'house', img:'',
+  {cat:'house', img:'', imgs:[],
    name:{zh:'金湖鎮・整層住家出租',en:'Jinhu — Full Floor for Rent'},
    where:{zh:'金門縣金湖鎮',en:'Jinhu Township, Kinmen'},
    price:{zh:'租金請洽詢',en:'Rent on request'},
    desc:{zh:'家族管理的物件，格局方正、生活機能好。歡迎約時間看房。',en:'Family-managed, well-proportioned and close to daily amenities. Viewings welcome.'},
-   tags:{zh:['整層','可短租','近市區'],en:['Whole floor','Short-term OK','Near town']}},
+   tags:{zh:['整層','可短租','近市區'],en:['Whole floor','Short-term OK','Near town']},
+   facts:{zh:[],
+          en:[]},
+   amen:{zh:['冷氣','熱水器','廚房','陽台','可裝網路'],
+         en:['Air-con','Water heater','Kitchen','Balcony','Internet ready']},
+   rules:{zh:[],
+          en:[]},
+   near:{zh:[],
+         en:[]},
+   map:'https://www.google.com/maps/search/?api=1&query=金門縣金湖鎮'},
 
-  {cat:'house', img:'',
+  {cat:'house', img:'', imgs:[],
    name:{zh:'金城鎮・店面 / 辦公空間',en:"Jincheng — Shop / Office Space"},
    where:{zh:'金門縣金城鎮',en:'Jincheng Township, Kinmen'},
    price:{zh:'洽詢',en:'On request'},
    desc:{zh:'適合小型工作室、選物店或辦公使用。可談長約。',en:'Suited to a small studio, select shop or office. Long leases negotiable.'},
-   tags:{zh:['店面','辦公','長約可談'],en:['Retail','Office','Long lease']}}
+   tags:{zh:['店面','辦公','長約可談'],en:['Retail','Office','Long lease']},
+   facts:{zh:[],
+          en:[]},
+   amen:{zh:['獨立門面','衛浴','可裝招牌','可裝網路'],
+         en:['Own entrance','Bathroom','Signage allowed','Internet ready']},
+   rules:{zh:[],
+          en:[]},
+   near:{zh:[],
+         en:[]},
+   map:'https://www.google.com/maps/search/?api=1&query=金門縣金城鎮'}
 ];
 
 const PRODUCTS = [
-  {cat:'cosmetic', img:'', price:'NT$680',
+  {cat:'cosmetic', img:'', imgs:[], price:'NT$680',
    name:{zh:'保濕精華 30ml',en:'Hydrating Serum 30ml'},
-   desc:{zh:'冬天在金門也不緊繃。',en:'Holds up through a Kinmen winter.'}},
-  {cat:'cosmetic', img:'', price:'NT$450',
+   desc:{zh:'冬天在金門也不緊繃。',en:'Holds up through a Kinmen winter.'},
+   facts:{zh:[['容量','30 ml']],
+          en:[['Size','30 ml']]},
+   ingr:{zh:'',en:''},
+   use:{zh:'',en:''},
+   note:{zh:'',en:''}},
+
+  {cat:'cosmetic', img:'', imgs:[], price:'NT$450',
    name:{zh:'溫和潔顏慕斯',en:'Gentle Cleansing Mousse'},
-   desc:{zh:'洗完不澀，敏感肌也可以。',en:'No tight feeling. Sensitive-skin friendly.'}},
-  {cat:'cosmetic', img:'', price:'NT$890',
+   desc:{zh:'洗完不澀，敏感肌也可以。',en:'No tight feeling. Sensitive-skin friendly.'},
+   facts:{zh:[],
+          en:[]},
+   ingr:{zh:'',en:''},
+   use:{zh:'',en:''},
+   note:{zh:'',en:''}},
+
+  {cat:'cosmetic', img:'', imgs:[], price:'NT$890',
    name:{zh:'修護面霜 50ml',en:'Repair Cream 50ml'},
-   desc:{zh:'晚上厚敷，隔天有差。',en:'Layer it on at night; you notice by morning.'}},
-  {cat:'cosmetic', img:'', price:'NT$320',
+   desc:{zh:'晚上厚敷，隔天有差。',en:'Layer it on at night; you notice by morning.'},
+   facts:{zh:[['容量','50 ml']],
+          en:[['Size','50 ml']]},
+   ingr:{zh:'',en:''},
+   use:{zh:'',en:''},
+   note:{zh:'',en:''}},
+
+  {cat:'cosmetic', img:'', imgs:[], price:'NT$320',
    name:{zh:'防曬乳 SPF50+',en:'Sunscreen SPF50+'},
-   desc:{zh:'海邊拍照必備，不油。',en:'Non-greasy — essential for shoots by the sea.'}},
-  {cat:'jewelry', img:'', price:'NT$1,280',
+   desc:{zh:'海邊拍照必備，不油。',en:'Non-greasy — essential for shoots by the sea.'},
+   facts:{zh:[],
+          en:[]},
+   ingr:{zh:'',en:''},
+   use:{zh:'',en:''},
+   note:{zh:'',en:''}},
+
+  {cat:'jewelry', img:'', imgs:[], price:'NT$1,280',
    name:{zh:'925 銀細鍊項鍊',en:'925 Silver Fine Chain'},
-   desc:{zh:'很細，適合每天戴著不拿下來。',en:'Thin enough to leave on every day.'}},
-  {cat:'jewelry', img:'', price:'NT$980',
+   desc:{zh:'很細，適合每天戴著不拿下來。',en:'Thin enough to leave on every day.'},
+   facts:{zh:[['材質','925 純銀']],
+          en:[['Material','925 sterling silver']]},
+   ingr:{zh:'925 純銀（銀 92.5%）',en:'Sterling silver (92.5% silver)'},
+   use:{zh:'',en:''},
+   note:{zh:'',en:''}},
+
+  {cat:'jewelry', img:'', imgs:[], price:'NT$980',
    name:{zh:'珍珠耳環',en:'Pearl Earrings'},
-   desc:{zh:'一顆的那種，不會太隆重。',en:'Single pearl — never overdressed.'}},
-  {cat:'jewelry', img:'', price:'NT$1,650',
+   desc:{zh:'一顆的那種，不會太隆重。',en:'Single pearl — never overdressed.'},
+   facts:{zh:[],
+          en:[]},
+   ingr:{zh:'',en:''},
+   use:{zh:'',en:''},
+   note:{zh:'',en:''}},
+
+  {cat:'jewelry', img:'', imgs:[], price:'NT$1,650',
    name:{zh:'手工銀戒',en:'Handmade Silver Ring'},
-   desc:{zh:'表面有槌打痕，每只不太一樣。',en:'Hammered surface; no two are alike.'}},
-  {cat:'other', img:'', price:'NT$550',
+   desc:{zh:'表面有槌打痕，每只不太一樣。',en:'Hammered surface; no two are alike.'},
+   facts:{zh:[['材質','925 純銀'],['工法','手工槌打']],
+          en:[['Material','925 sterling silver'],['Finish','Hand-hammered']]},
+   ingr:{zh:'925 純銀（銀 92.5%）',en:'Sterling silver (92.5% silver)'},
+   use:{zh:'',en:''},
+   note:{zh:'手工製作，每只紋路略有差異，不算瑕疵。',en:'Hand-made — the marks differ on every ring; that is not a fault.'}},
+
+  {cat:'other', img:'', imgs:[], price:'NT$550',
    name:{zh:'金門風獅爺明信片組',en:'Kinmen Wind Lion Postcards'},
-   desc:{zh:'我拍的照片印的，一組八張。',en:'Printed from my own photographs. Set of eight.'}},
-  {cat:'other', img:'nobel-card.jpg', price:'洽詢 On request',
+   desc:{zh:'我拍的照片印的，一組八張。',en:'Printed from my own photographs. Set of eight.'},
+   facts:{zh:[['張數','8 張 / 組'],['攝影','我們自己拍的']],
+          en:[['Quantity','8 per set'],['Photography','Our own']]},
+   ingr:{zh:'',en:''},
+   use:{zh:'',en:''},
+   note:{zh:'照片版權是我們的，請勿商業使用。',en:'The photographs are ours — please do not use them commercially.'}},
+
+  {cat:'other', img:'nobel-card.jpg', imgs:[], price:'洽詢 On request',
    name:{zh:'精醇能量飲 10 包',en:'Nobel Energy Drink · 10 sachets'},
-   desc:{zh:'綠花椰菜與法國葡萄萃取，一盒十包，每天一包沖水喝。',en:'Broccoli and France grape extract. Ten sachets; one a day, mixed with water.'}},
-  {cat:'other', img:'ginger-poster.png', ratio:'1054/1492', price:'洽詢 On request',
+   desc:{zh:'綠花椰菜與法國葡萄萃取，一盒十包，每天一包沖水喝。',en:'Broccoli and France grape extract. Ten sachets; one a day, mixed with water.'},
+   facts:{zh:[['內容量','1 盒 10 包'],['主要成分','綠花椰菜粉、法國葡萄萃取'],['劑型','粉狀沖泡']],
+          en:[['Contents','10 sachets per box'],['Key ingredients','Broccoli powder, France grape extract'],['Form','Powder to mix']]},
+   ingr:{zh:'',en:''},
+   use:{zh:'',en:''},
+   note:{zh:'這是食品，不是藥品，不能取代醫師的治療。孕婦、慢性病或正在服藥的人請先問過醫師。',en:'A food product, not a medicine — it does not replace medical treatment. If pregnant, managing a long-term condition or taking medication, ask your doctor first.'}},
+
+  {cat:'other', img:'ginger-poster.png', imgs:[], ratio:'1054/1492', price:'洽詢 On request',
    name:{zh:'薑皇王 300 粒',en:'Ukon King · 300 capsules'},
-   desc:{zh:'日本甘味人生，六種薑黃複方，一盒 300 粒。',en:'A six-turmeric blend from 甘味人生, Japan. 300 capsules.'}},
-  {cat:'other', img:'music-medicine-card.svg', ratio:'1054/1492', price:'洽詢 On request',
+   desc:{zh:'日本甘味人生，六種薑黃複方，一盒 300 粒。',en:'A six-turmeric blend from 甘味人生, Japan. 300 capsules.'},
+   facts:{zh:[['內容量','1 盒 300 粒'],['品牌','甘味人生（日本）'],['配方','六種薑黃複方']],
+          en:[['Contents','300 capsules'],['Brand','Kanmi Jinsei (Japan)'],['Blend','Six turmeric varieties']]},
+   ingr:{zh:'',en:''},
+   use:{zh:'',en:''},
+   note:{zh:'這是食品，不是藥品。孕婦、膽道疾病或正在服藥的人請先問過醫師。',en:'A food product, not a medicine. If pregnant, managing a bile-duct condition or taking medication, ask your doctor first.'}},
+
+  /* 這一項的細節欄位我留空 — 我不知道實際內容，請你自己填。
+     填了才會出現在展開視窗裡，沒填就只顯示名稱與說明。
+     Detail fields intentionally left empty — fill them in yourself. */
+  {cat:'other', img:'music-medicine-card.svg', imgs:[], ratio:'1054/1492', price:'洽詢 On request',
    name:{zh:'音樂醫學・世界首創',en:'Music Medicine · World First'},
-   desc:{zh:'音樂醫學主題商品；詳情、庫存與使用方式請洽詢。',en:'A music-medicine themed product. Contact us for details, stock and directions for use.'}}
+   desc:{zh:'音樂醫學主題商品；詳情、庫存與使用方式請洽詢。',en:'A music-medicine themed product. Contact us for details, stock and directions for use.'},
+   facts:{zh:[],en:[]},
+   ingr:{zh:'',en:''},
+   use:{zh:'',en:''},
+   note:{zh:'',en:''}}
 ];
+
+/* ---------- 出貨・運費 SHIPPING（所有商品共用 / shared by all products） ---------- */
+const SHIPPING = {
+  zh:'',
+  en:''
+};
+
+/* ============ 首頁背景短片 HERO CLIP ============
+   放一段 10–20 秒、沒有聲音的短片當首頁背景。
+   留空 '' 就維持原本的色塊。檔案請壓到 5MB 以內。
+   A silent 10–20s clip as the hero background. Leave '' to keep
+   the coloured tiles. Keep the file under 5MB.
+   poster = 影片載入前先顯示的圖 / still shown before it loads     */
+const HERO_CLIP = { src:'', poster:'' };
 
 /* ============ 聯絡設定 CONTACT SETTINGS ============ */
 const CONTACT = {
@@ -854,15 +1053,52 @@ const CONTACT = {
     $('#galGrid').innerHTML = list.map(g => {
       const idx = GALLERY.indexOf(g);
       const isVid = g.kind==='video';
+      const inner = (isVid && g.loop && g.src)
+        ? '<video class="loopclip" src="'+esc(g.src)+'"'+(g.img?' poster="'+esc(g.img)+'"':'')
+          + ' muted loop playsinline preload="none" autoplay></video>'
+        : mediaBox(g, idx, ICON[g.kind]);
       return '<article class="card">'
         + '<div class="card-media" data-gal="'+idx+'">'
         +   '<span class="badge">'+esc(T(KIND[g.kind]))+'</span>'
-        +   mediaBox(g, idx, ICON[g.kind])
+        +   inner
         +   ((isVid||g.kind==='music') ? '<div class="play"><span>'+(isVid?'▶':'♪')+'</span></div>' : '')
         + '</div>'
         + '<div class="card-body"><h3>'+esc(T(g.title))+'</h3><p>'+esc(T(g.desc))+'</p></div>'
         + '</article>';
     }).join('');
+  }
+
+  /* 只在畫面裡的短片才播，省流量 / only play clips that are on screen */
+  let clipObserver = null;
+  function wireClips(){
+    const vids = $$('#galGrid video.loopclip');
+    if (!vids.length) return;
+    if (!('IntersectionObserver' in window)){ vids.forEach(v=>v.play().catch(()=>{})); return; }
+    if (clipObserver) clipObserver.disconnect();
+    clipObserver = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        const v = en.target;
+        if (en.isIntersecting){ v.preload='auto'; v.play().catch(()=>{}); }
+        else v.pause();
+      });
+    }, {threshold:.25});
+    vids.forEach(v => clipObserver.observe(v));
+  }
+
+  /* ---------- HERO CLIP ---------- */
+  function mountHeroClip(){
+    if (!HERO_CLIP.src) return;
+    const art = $('.hero-art'); if (!art || $('.hero-video')) return;
+    art.classList.add('has-video');
+    art.removeAttribute('aria-hidden');
+    const v = document.createElement('video');
+    v.className = 'hero-video';
+    v.src = HERO_CLIP.src;
+    if (HERO_CLIP.poster) v.poster = HERO_CLIP.poster;
+    v.muted = true; v.loop = true; v.playsInline = true; v.autoplay = true;
+    v.setAttribute('muted',''); v.setAttribute('playsinline','');
+    art.appendChild(v);
+    v.play().catch(()=>{});
   }
 
   /* ---------- PROPERTIES ---------- */
@@ -880,8 +1116,10 @@ const CONTACT = {
     const list = PROPERTIES.filter(p => propFilter==='all' || p.cat===propFilter);
     $('#propGrid').innerHTML = list.map((p,i) => {
       const tags = (T(p.tags)||[]).map(t=>'<span class="tag">'+esc(t)+'</span>').join('');
-      return '<article class="card prop">'
-        + '<div class="card-media">'+mediaBox(p, i, p.cat==='room'?'⌂':'▦')+'</div>'
+      const pi = PROPERTIES.indexOf(p);
+      return '<article class="card prop" data-prop="'+pi+'" style="cursor:pointer">'
+        + '<div class="card-media">'+mediaBox(p, i, p.cat==='room'?'⌂':'▦')
+        +   '<span class="badge">'+(lang==='zh'?'看詳細':'View')+'</span></div>'
         + '<div class="card-body">'
         +   '<h3>'+esc(T(p.name))+'</h3>'
         +   '<div class="row"><span>◎ '+esc(T(p.where))+'</span></div>'
@@ -912,7 +1150,7 @@ const CONTACT = {
     $('#shopGrid').innerHTML = list.map(p => {
       const idx = PRODUCTS.indexOf(p);
       const n = cart[idx]||0;
-      return '<article class="card">'
+      return '<article class="card" data-shop="'+idx+'" style="cursor:pointer">'
         + '<div class="card-media" style="aspect-ratio:'+(p.ratio||'1/1')+'">'+mediaBox(p, idx, p.cat==='jewelry'?'✦':'✿')+'</div>'
         + '<div class="card-body">'
         +   '<h3 style="font-size:15.5px">'+esc(T(p.name))+'</h3>'
@@ -937,9 +1175,78 @@ const CONTACT = {
       + PROPERTIES.map(p=>'<option>'+esc(T(p.name))+'</option>').join('');
   }
 
-  /* ---------- LIGHTBOX ---------- */
-  function openLightbox(i){
+  /* ---------- LIGHTBOX / 展開檢視 EXPAND VIEW ---------- */
+  /* one viewer for gallery items, properties and products.
+     ‹ › 可在同一類別中前後切換 / arrows step through the current list */
+  let lbCtx = {type:null, list:[], pos:0};
+
+  const imgsOf = it => (it.imgs && it.imgs.length) ? it.imgs : (it.img ? [it.img] : []);
+
+  function thumbsHTML(imgs, active){
+    if (imgs.length < 2) return '';
+    return '<div class="lbd-thumbs">' + imgs.map((src,i)=>
+      '<img src="'+esc(src)+'" data-thumb="'+i+'" class="'+(i===active?'on':'')+'" alt="">').join('') + '</div>';
+  }
+  function mainHTML(imgs, active, icon, alt){
+    return '<div class="lbd-main">' + (imgs.length
+      ? '<img id="lbdMain" src="'+esc(imgs[active])+'" alt="'+esc(alt)+'">'
+      : placeholder(0, icon)) + '</div>';
+  }
+
+  const SEC = {
+    facts:{zh:'基本資料',en:'Details'},
+    amen: {zh:'設施與配備',en:'Facilities'},
+    rules:{zh:'入住・租賃條件',en:'Terms & rules'},
+    near: {zh:'附近',en:'Nearby'},
+    spec: {zh:'規格',en:'Specification'},
+    ingr: {zh:'成分・材質',en:'Ingredients / material'},
+    use:  {zh:'怎麼用',en:'How to use'},
+    ship: {zh:'出貨與運費',en:'Shipping'},
+    note: {zh:'小提醒',en:'Good to know'},
+    map:  {zh:'在地圖上看',en:'Open in Google Maps'}
+  };
+  function secFacts(key, pairs){
+    if (!pairs || !pairs.length) return '';
+    return '<div class="lbd-sec"><h4>'+esc(T(SEC[key]))+'</h4><dl class="lbd-facts">'
+      + pairs.map(r=>'<div><dt>'+esc(r[0])+'</dt><dd>'+esc(r[1])+'</dd></div>').join('')
+      + '</dl></div>';
+  }
+  function secChips(key, arr){
+    if (!arr || !arr.length) return '';
+    return '<div class="lbd-sec"><h4>'+esc(T(SEC[key]))+'</h4><div class="lbd-amen">'
+      + arr.map(a=>'<span>✓ '+esc(a)+'</span>').join('') + '</div></div>';
+  }
+  function secProse(key, txt, raw){
+    if (!txt) return '';
+    return '<div class="lbd-sec"><h4>'+esc(T(SEC[key]))+'</h4><p>'+(raw?txt:esc(txt))+'</p></div>';
+  }
+
+  function openViewer(type, list, pos){
+    lbCtx = {type:type, list:list, pos:pos};
+    drawViewer(0);
+    $('#lightbox').classList.add('on');
+    document.body.style.overflow = 'hidden';
+    $$('#galGrid video.loopclip').forEach(v=>v.pause());
+  }
+  function lbStep(d){
+    if (!lbCtx.list.length) return;
+    lbCtx.pos = (lbCtx.pos + d + lbCtx.list.length) % lbCtx.list.length;
+    drawViewer(0);
+  }
+  function drawViewer(imgIdx){
+    const multi = lbCtx.list.length > 1;
+    $('#lbPrev').style.display = multi ? 'flex' : 'none';
+    $('#lbNext').style.display = multi ? 'flex' : 'none';
+    const idx = lbCtx.list[lbCtx.pos];
+    if (lbCtx.type === 'gal')  drawGallery(idx);
+    if (lbCtx.type === 'prop') drawProperty(idx, imgIdx);
+    if (lbCtx.type === 'shop') drawProduct(idx, imgIdx);
+  }
+
+  /* --- gallery item --- */
+  function drawGallery(i){
     const g = GALLERY[i];
+    $('#lbIn').classList.remove('wide');
     let media = '';
     if (g.kind === 'video' && g.youtube)      media = '<iframe src="https://www.youtube.com/embed/'+esc(g.youtube)+'?rel=0" allow="accelerometer;autoplay;encrypted-media;picture-in-picture" allowfullscreen></iframe>';
     else if (g.kind === 'video' && g.src)     media = '<video src="'+esc(g.src)+'" controls autoplay playsinline></video>';
@@ -954,13 +1261,94 @@ const CONTACT = {
     }
     $('#lbIn').innerHTML = media
       + '<div class="lb-cap"><b>'+esc(T(g.title))+'</b><small>'+esc(T(g.desc))+'</small></div>';
-    $('#lightbox').classList.add('on');
-    document.body.style.overflow = 'hidden';
   }
+
+  /* --- property / room --- */
+  function drawProperty(i, imgIdx){
+    const p = PROPERTIES[i];
+    const imgs = imgsOf(p);
+    const a = Math.min(imgIdx||0, Math.max(imgs.length-1,0));
+    const tags = (T(p.tags)||[]).map(t=>'<span class="tag">'+esc(t)+'</span>').join('');
+    const kindLabel = p.cat==='room' ? (lang==='zh'?'民宿房型':'Inn room') : (lang==='zh'?'房屋物件':'Property');
+    const note = lang==='zh'
+      ? '想看更多照片或問細節，直接用下面的預約表單或打電話給我們都可以。'
+      : 'Want more photos or details? Use the booking form below, or just call us.';
+    $('#lbIn').classList.add('wide');
+    $('#lbIn').innerHTML =
+      '<div class="lbd">'
+      + '<div class="lbd-media">' + mainHTML(imgs, a, p.cat==='room'?'⌂':'▦', T(p.name)) + thumbsHTML(imgs, a) + '</div>'
+      + '<div class="lbd-info">'
+      +   '<div class="eyebrow">'+esc(kindLabel)+'</div>'
+      +   '<h3>'+esc(T(p.name))+'</h3>'
+      +   '<p class="where">◎ '+esc(T(p.where))+'</p>'
+      +   '<span class="price">'+esc(T(p.price))+'</span>'
+      +   '<p class="body">'+esc(T(p.desc))+'</p>'
+      +   '<div class="tags">'+tags+'</div>'
+      +   '<div class="btnrow" style="margin-top:18px">'
+      +     '<button class="btn btn-primary btn-sm" data-book="'+esc(T(p.name))+'">'+(lang==='zh'?'預約這間':'Book this')+'</button>'
+      +     '<a class="btn btn-ghost btn-sm" href="tel:'+esc(CONTACT.tel)+'">'+(lang==='zh'?'直接打電話':'Call us')+'</a>'
+      +   '</div>'
+      +   secFacts('facts', T(p.facts))
+      +   secChips('amen',  T(p.amen))
+      +   secFacts('rules', T(p.rules))
+      +   secFacts('near',  T(p.near))
+      +   (p.map ? '<a class="lbd-map" href="'+esc(p.map)+'" target="_blank" rel="noopener">◎ '+esc(T(SEC.map))+' ↗</a>' : '')
+      +   '<div class="lbd-note">'+esc(note)+'</div>'
+      + '</div></div>';
+  }
+
+  /* --- product --- */
+  function drawProduct(i, imgIdx){
+    const p = PRODUCTS[i];
+    const imgs = imgsOf(p);
+    const a = Math.min(imgIdx||0, Math.max(imgs.length-1,0));
+    const n = cart[i]||0;
+    const catLabel = (shopFilterDefs.find(d=>d[0]===p.cat)||[,{zh:'選物',en:'Selections'}])[1];
+    const note = lang==='zh'
+      ? '都是自己用過、戴過才放上來的。加入詢問後會產生一張清單，傳給我們對數量與運費。'
+      : "Everything here we've used or worn ourselves. Adding it builds a short list you can send us for stock and shipping.";
+    $('#lbIn').classList.add('wide');
+    $('#lbIn').innerHTML =
+      '<div class="lbd">'
+      + '<div class="lbd-media">' + mainHTML(imgs, a, p.cat==='jewelry'?'✦':'✿', T(p.name)) + thumbsHTML(imgs, a) + '</div>'
+      + '<div class="lbd-info">'
+      +   '<div class="eyebrow">'+esc(T(catLabel))+'</div>'
+      +   '<h3>'+esc(T(p.name))+'</h3>'
+      +   '<span class="price">'+esc(p.price)+'</span>'
+      +   '<p class="body">'+esc(T(p.desc))+'</p>'
+      +   '<div class="btnrow" style="margin-top:6px">'
+      +     '<button class="btn '+(n?'btn-primary':'btn-ghost')+' btn-sm" data-add="'+i+'">'
+      +       (n ? '✓ '+n : (lang==='zh'?'加入詢問':'Add'))+'</button>'
+      +   '</div>'
+      +   secFacts('spec', T(p.facts))
+      +   secProse('ingr', T(p.ingr))
+      +   secProse('use',  T(p.use))
+      +   secProse('ship', T(SHIPPING), true)
+      +   secProse('note', T(p.note))
+      +   '<div class="lbd-note">'+esc(note)+'</div>'
+      + '</div></div>';
+  }
+
+  function openLightbox(i){
+    const list = GALLERY.map((g,n)=>n).filter(n => galFilter==='all' || GALLERY[n].kind===galFilter);
+    openViewer('gal', list, Math.max(list.indexOf(i),0));
+  }
+  function openProperty(i){
+    const list = PROPERTIES.map((p,n)=>n).filter(n => propFilter==='all' || PROPERTIES[n].cat===propFilter);
+    openViewer('prop', list, Math.max(list.indexOf(i),0));
+  }
+  function openProduct(i){
+    const list = PRODUCTS.map((p,n)=>n).filter(n => shopFilter==='all' || PRODUCTS[n].cat===shopFilter);
+    openViewer('shop', list, Math.max(list.indexOf(i),0));
+  }
+
   function closeLightbox(){
     $('#lightbox').classList.remove('on');
     $('#lbIn').innerHTML = '';
+    $('#lbIn').classList.remove('wide');
+    lbCtx = {type:null, list:[], pos:0};
     document.body.style.overflow = '';
+    wireClips();
   }
 
   /* ---------- RELAX MODE ---------- */
@@ -1061,7 +1449,7 @@ const CONTACT = {
   /* ---------- EVENTS ---------- */
   $('#galFilters').addEventListener('click', e => {
     const b = e.target.closest('[data-k]'); if(!b) return;
-    galFilter = b.dataset.k; renderGalFilters(); renderGallery();
+    galFilter = b.dataset.k; renderGalFilters(); renderGallery(); wireClips();
   });
   $('#propFilters').addEventListener('click', e => {
     const b = e.target.closest('[data-k]'); if(!b) return;
@@ -1076,7 +1464,13 @@ const CONTACT = {
     openLightbox(+m.dataset.gal);
   });
   $('#propGrid').addEventListener('click', e => {
-    const b = e.target.closest('[data-book]'); if(!b) return;
+    const b = e.target.closest('[data-book]');
+    if(!b){
+      const c = e.target.closest('[data-prop]');
+      if(c) openProperty(+c.dataset.prop);
+      return;
+    }
+    e.stopPropagation();
     const name = b.dataset.book;
     const sel = $('#bkItem');
     for (const o of sel.options) if (o.value === name || o.text === name) { sel.value = o.value; break; }
@@ -1085,11 +1479,42 @@ const CONTACT = {
     setTimeout(()=>$('#bkName').focus(), 600);
   });
   $('#shopGrid').addEventListener('click', e => {
-    const b = e.target.closest('[data-add]'); if(!b) return;
+    const b = e.target.closest('[data-add]');
+    if(!b){
+      const c = e.target.closest('[data-shop]');
+      if(c) openProduct(+c.dataset.shop);
+      return;
+    }
+    e.stopPropagation();
     const i = +b.dataset.add;
     cart[i] = (cart[i]||0) + 1;
     renderShop(); renderCart();
   });
+
+  /* clicks inside the expand view: thumbnails, book, add-to-enquiry */
+  $('#lbIn').addEventListener('click', e => {
+    const t = e.target.closest('[data-thumb]');
+    if (t){ drawViewer(+t.dataset.thumb); return; }
+    const add = e.target.closest('[data-add]');
+    if (add){
+      const i = +add.dataset.add;
+      cart[i] = (cart[i]||0) + 1;
+      renderShop(); renderCart(); drawViewer(0);
+      return;
+    }
+    const bk = e.target.closest('[data-book]');
+    if (bk){
+      const name = bk.dataset.book;
+      const sel = $('#bkItem');
+      for (const o of sel.options) if (o.value === name || o.text === name) { sel.value = o.value; break; }
+      $('#bkType').selectedIndex = name.indexOf('客棧')>-1 || name.toLowerCase().indexOf('inn')>-1 ? 0 : 1;
+      closeLightbox();
+      document.getElementById('booking').scrollIntoView({behavior:'smooth'});
+      setTimeout(()=>$('#bkName').focus(), 600);
+    }
+  });
+  $('#lbPrev').addEventListener('click', e => { e.stopPropagation(); lbStep(-1); });
+  $('#lbNext').addEventListener('click', e => { e.stopPropagation(); lbStep(1); });
   $('#cartGo').addEventListener('click', () => {
     const lines = Object.keys(cart).filter(k=>cart[k]>0).map(k => {
       const p = PRODUCTS[k];
@@ -1136,8 +1561,10 @@ const CONTACT = {
   $('#relaxExit').addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); closeRelax(); });
   $('#relax').addEventListener('click', closeRelax);   // clicking anywhere also leaves
   document.addEventListener('keydown', e => {
-    if (e.key !== 'Escape') return;
-    closeLightbox(); closeRelax(); closeModal();
+    if (e.key === 'Escape'){ closeLightbox(); closeRelax(); closeModal(); return; }
+    if (!$('#lightbox').classList.contains('on')) return;
+    if (e.key === 'ArrowLeft')  lbStep(-1);
+    if (e.key === 'ArrowRight') lbStep(1);
   });
   $('#menuToggle').addEventListener('click', ()=> $('#navLinks').classList.toggle('open'));
   $$('#navLinks a').forEach(a => a.addEventListener('click', ()=> $('#navLinks').classList.remove('open')));
@@ -1152,7 +1579,7 @@ const CONTACT = {
   });
 
   function renderAll(){
-    renderGalFilters(); renderGallery();
+    renderGalFilters(); renderGallery(); wireClips();
     renderPropFilters(); renderProps();
     renderShopFilters(); renderShop(); renderCart();
     renderBookItems();
@@ -1160,6 +1587,7 @@ const CONTACT = {
 
   $('#yr').textContent = new Date().getFullYear();
   renderAll();
+  mountHeroClip();
 })();
 </script>
 </body>
