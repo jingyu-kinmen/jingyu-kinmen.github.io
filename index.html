@@ -130,6 +130,9 @@ section.alt{background:var(--bg-2)}
 .card-media{position:relative;aspect-ratio:4/3;background:var(--bg-2);overflow:hidden;cursor:pointer}
 .card-media img{width:100%;height:100%;object-fit:cover;transition:.4s}
 .card:hover .card-media img{transform:scale(1.045)}
+/* used for product photos: shows the whole picture instead of cropping it to fill the box */
+.card-media.fit-contain img{object-fit:contain;padding:12px}
+.card:hover .card-media.fit-contain img{transform:none}
 .badge{
   position:absolute;top:11px;left:11px;z-index:2;background:rgba(43,38,33,.72);color:#fff;
   font-size:11.5px;font-weight:600;letter-spacing:.06em;padding:4px 10px;border-radius:999px;backdrop-filter:blur(6px);
@@ -243,6 +246,8 @@ footer ul{list-style:none;padding:0;margin:0;display:grid;gap:7px}
 .lbd-media{background:#f3ece2;display:flex;flex-direction:column;gap:10px;padding:14px}
 .lbd-main{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;border-radius:12px;overflow:hidden;background:#efe6da}
 .lb-in .lbd-main img{width:100%;height:100%;max-height:70vh;object-fit:cover;border-radius:12px;background:#efe6da}
+/* products open here too — contain keeps the whole photo visible, never cropped */
+.lb-in .lbd-main.fit-contain img{object-fit:contain;padding:16px}
 .lbd-main .ph,.lbd-main .ph.b,.lbd-main .ph.c{width:100%;min-height:340px;display:flex;align-items:center;justify-content:center;font-size:44px}
 .lbd-thumbs{display:flex;gap:8px;flex-wrap:wrap}
 .lb-in .lbd-thumbs img{width:62px;height:62px;object-fit:cover;border-radius:8px;cursor:pointer;opacity:.55;border:2px solid transparent;transition:.2s}
@@ -1151,7 +1156,7 @@ const CONTACT = {
       const idx = PRODUCTS.indexOf(p);
       const n = cart[idx]||0;
       return '<article class="card" data-shop="'+idx+'" style="cursor:pointer">'
-        + '<div class="card-media" style="aspect-ratio:'+(p.ratio||'1/1')+'">'+mediaBox(p, idx, p.cat==='jewelry'?'✦':'✿')+'</div>'
+        + '<div class="card-media fit-contain" data-shop-media style="aspect-ratio:'+(p.ratio||'1/1')+'">'+mediaBox(p, idx, p.cat==='jewelry'?'✦':'✿')+'</div>'
         + '<div class="card-body">'
         +   '<h3 style="font-size:15.5px">'+esc(T(p.name))+'</h3>'
         +   '<p style="font-size:13.5px">'+esc(T(p.desc))+'</p>'
@@ -1160,6 +1165,17 @@ const CONTACT = {
         +       (n ? '✓ '+n : (lang==='zh'?'加入詢問':'Add'))+'</button></div>'
         + '</div></article>';
     }).join('');
+    fitShopImages();
+  }
+  /* 自動量出每張商品圖片真正的長寬比，蓋掉方框，圖片就不會被裁切
+     — 以後加新商品、不管有沒有填 ratio，都不會被切到。
+     Reads each product photo's real width/height and sets the box to match —
+     so future products are never cropped, ratio field or not. */
+  function fitShopImages(){
+    $$('#shopGrid [data-shop-media] img').forEach(img => {
+      const apply = () => { if (img.naturalWidth) img.parentElement.style.aspectRatio = img.naturalWidth+'/'+img.naturalHeight; };
+      if (img.complete) apply(); else img.addEventListener('load', apply, {once:true});
+    });
   }
   function renderCart(){
     const n = Object.values(cart).reduce((a,b)=>a+b,0);
@@ -1187,8 +1203,8 @@ const CONTACT = {
     return '<div class="lbd-thumbs">' + imgs.map((src,i)=>
       '<img src="'+esc(src)+'" data-thumb="'+i+'" class="'+(i===active?'on':'')+'" alt="">').join('') + '</div>';
   }
-  function mainHTML(imgs, active, icon, alt){
-    return '<div class="lbd-main">' + (imgs.length
+  function mainHTML(imgs, active, icon, alt, fit){
+    return '<div class="lbd-main'+(fit==='contain'?' fit-contain':'')+'">' + (imgs.length
       ? '<img id="lbdMain" src="'+esc(imgs[active])+'" alt="'+esc(alt)+'">'
       : placeholder(0, icon)) + '</div>';
   }
@@ -1310,7 +1326,7 @@ const CONTACT = {
     $('#lbIn').classList.add('wide');
     $('#lbIn').innerHTML =
       '<div class="lbd">'
-      + '<div class="lbd-media">' + mainHTML(imgs, a, p.cat==='jewelry'?'✦':'✿', T(p.name)) + thumbsHTML(imgs, a) + '</div>'
+      + '<div class="lbd-media">' + mainHTML(imgs, a, p.cat==='jewelry'?'✦':'✿', T(p.name), 'contain') + thumbsHTML(imgs, a) + '</div>'
       + '<div class="lbd-info">'
       +   '<div class="eyebrow">'+esc(T(catLabel))+'</div>'
       +   '<h3>'+esc(T(p.name))+'</h3>'
