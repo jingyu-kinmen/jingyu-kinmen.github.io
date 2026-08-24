@@ -1,0 +1,42 @@
+name: Remove hero video thumbnail bars
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove black bars from hero video thumbnails
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          old = '.hero-video-thumb{width:100%;height:100%;display:block;object-fit:cover;transition:.45s}'
+          new = '.hero-video-thumb{width:100%;height:100%;display:block;object-fit:cover;transform:scale(1.18);transition:.45s}'
+          old_hover = '.hero-video-tile:hover .hero-video-thumb{transform:scale(1.045)}'
+          new_hover = '.hero-video-tile:hover .hero-video-thumb{transform:scale(1.23)}'
+          if old in s:
+              s = s.replace(old, new, 1)
+          if old_hover in s:
+              s = s.replace(old_hover, new_hover, 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "Remove black bars from hero video thumbnails"
+          git push
+      - name: Remove this workflow
+        if: always()
+        run: |
+          git rm -f .github/workflows/remove-hero-video-bars.yml || true
+          git diff --cached --quiet || git commit -m "Remove temporary video bar workflow"
+          git push || true
