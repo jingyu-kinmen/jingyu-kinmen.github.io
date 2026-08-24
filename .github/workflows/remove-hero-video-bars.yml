@@ -1,7 +1,8 @@
 name: Remove hero video thumbnail bars
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [main]
 
 permissions:
   contents: write
