@@ -1,0 +1,36 @@
+name: Update gallery video
+
+on:
+  push:
+    paths:
+      - '.github/workflows/update-gallery-video.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update title and description
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace("title:{zh:'夏興的一天',en:'A Day in Xiaxing'},", "title:{zh:'千手觀音・金身醒覺',en:'Thousand-Armed Guanyin · Awakening'},")
+          s = s.replace("desc:{zh:'從清晨的巷子拍到傍晚的海。四分鐘。',en:'From morning lanes to the evening sea. Four minutes.'}", "desc:{zh:'光影與香煙之間，千手觀音金身呈現莊嚴而寧靜的醒覺意象。',en:'Amid light and incense, the golden Thousand-Armed Guanyin evokes a solemn and serene moment of awakening.'}")
+          p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Commit changes and remove temporary workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git rm .github/workflows/update-gallery-video.yml
+          git commit -m 'Update gallery video title and description'
+          git push
