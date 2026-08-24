@@ -1,0 +1,77 @@
+name: Add hero videos
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update hero videos
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path("index.html")
+          s = p.read_text(encoding="utf-8")
+
+          if "hero-video-tile" in s:
+              print("Hero videos already installed; nothing to do.")
+              raise SystemExit(0)
+
+          old = """<div class="hero-art" aria-hidden="true">
+                <div class="tile t1"><div class="ph">▤</div></div>
+                <div class="tile t2"><div class="ph b">♪</div></div>
+                <div class="tile t3"><div class="ph c">✦</div></div>
+              </div>"""
+
+          new = """<div class="hero-art">
+                <button class="tile t1 hero-video-tile" type="button" data-gal="0" aria-label="Play 千手觀音・金身醒覺">
+                  <img class="hero-video-thumb" src="https://i.ytimg.com/vi/TXJ2a91cp6A/hqdefault.jpg" alt="">
+                  <span class="hero-video-play" aria-hidden="true">▶</span>
+                </button>
+                <button class="tile t2 hero-video-tile" type="button" data-gal="6" aria-label="Play 千手觀音・金身醒覺">
+                  <img class="hero-video-thumb" src="https://i.ytimg.com/vi/kjy2rbjisWo/hqdefault.jpg" alt="">
+                  <span class="hero-video-play" aria-hidden="true">▶</span>
+                </button>
+                <button class="tile t3 hero-video-tile" type="button" data-gal="5" aria-label="Play 千手觀音・金身醒覺">
+                  <img class="hero-video-thumb" src="https://i.ytimg.com/vi/x5aTL7C3ZJM/hqdefault.jpg" alt="">
+                  <span class="hero-video-play" aria-hidden="true">▶</span>
+                </button>
+              </div>"""
+
+          if old not in s:
+              raise SystemExit("Expected hero markup was not found.")
+          s = s.replace(old, new, 1)
+
+          css = """.hero-art .hero-video-tile{padding:0;border:1px solid var(--line);cursor:pointer;color:inherit;background:var(--card)}
+          .hero-video-tile:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+          .hero-video-thumb{width:100%;height:100%;display:block;object-fit:cover;transition:.45s}
+          .hero-video-tile:hover .hero-video-thumb{transform:scale(1.045)}
+          .hero-video-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:58px;height:58px;border-radius:50%;display:grid;place-items:center;padding-left:4px;background:rgba(255,255,255,.9);color:var(--accent);font-size:19px;box-shadow:0 7px 24px rgba(0,0,0,.2);transition:.2s}
+          .hero-video-tile:hover .hero-video-play{transform:translate(-50%,-50%) scale(1.06)}"""
+          anchor = "@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-11px)}}"
+          if css not in s:
+              s = s.replace(anchor, anchor + "\n" + css, 1)
+
+          marker = """  $('#galGrid').addEventListener('click', e => {
+              const m = e.target.closest('[data-gal]'); if(!m) return;
+              openLightbox(+m.dataset.gal);
+            });"""
+          hero_handler = marker + """
+            $$('.hero-video-tile').forEach(b => b.addEventListener('click', () => openLightbox(+b.dataset.gal)));"""
+          if marker not in s:
+              raise SystemExit("Gallery click handler was not found.")
+          s = s.replace(marker, hero_handler, 1)
+
+          p.write_text(s, encoding="utf-8")
+      - name: Commit changes and remove one-time workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git rm .github/workflows/add-hero-videos.yml
+          git commit -m "Add three hero videos [hero-update]"
+          git push
