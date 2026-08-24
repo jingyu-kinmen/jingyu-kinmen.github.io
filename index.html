@@ -764,7 +764,7 @@ const GALLERY = [
   // video: youtube:'ID'（長片）或 src:'my-film.mp4'（自己的檔案）
   // loop:true  → 15–30 秒的無聲短片，會直接在格子裡靜音循環播放
   //              short silent clip; plays muted on a loop in the grid
-  {kind:'video', youtube:'', src:'', img:'',
+  {kind:'video', youtube:'TXJ2a91cp6A', src:'', img:'https://i.ytimg.com/vi/TXJ2a91cp6A/hqdefault.jpg',
    title:{zh:'夏興的一天',en:'A Day in Xiaxing'},
    desc:{zh:'從清晨的巷子拍到傍晚的海。四分鐘。',en:'From morning lanes to the evening sea. Four minutes.'}},
 
@@ -1264,7 +1264,7 @@ const CONTACT = {
     const g = GALLERY[i];
     $('#lbIn').classList.remove('wide');
     let media = '';
-    if (g.kind === 'video' && g.youtube)      media = '<iframe src="https://www.youtube.com/embed/'+esc(g.youtube)+'?rel=0" allow="accelerometer;autoplay;encrypted-media;picture-in-picture" allowfullscreen></iframe>';
+    if (g.kind === 'video' && g.youtube)      media = '<iframe src="https://www.youtube.com/embed/'+esc(g.youtube)+'?autoplay=1&playsinline=1&rel=0&modestbranding=1" allow="accelerometer;autoplay;encrypted-media;picture-in-picture" allowfullscreen></iframe>';
     else if (g.kind === 'video' && g.src)     media = '<video src="'+esc(g.src)+'" controls autoplay playsinline></video>';
     else if (g.kind === 'music' && g.src)     media = '<div style="width:100%;padding:56px 22px;background:linear-gradient(150deg,#a86f4c,#6f7f6c);border-radius:12px;text-align:center"><div style="font-size:52px;color:#fff;margin-bottom:20px">♪</div><audio src="'+esc(g.src)+'" controls autoplay style="width:100%;max-width:460px"></audio></div>';
     else if (g.img)                           media = '<img src="'+esc(g.img)+'" alt="'+esc(T(g.title))+'">';
