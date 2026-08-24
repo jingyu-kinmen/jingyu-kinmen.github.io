@@ -94,6 +94,12 @@ nav.links a:hover{background:var(--bg-2);color:var(--ink)}
 .hero-art .t2{inset:30% 0 12% 34%;animation:float 11s ease-in-out infinite reverse}
 .hero-art .t3{width:132px;height:132px;left:2%;bottom:2%;animation:float 8s ease-in-out infinite .8s}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-11px)}}
+.hero-art .hero-video-tile{padding:0;border:1px solid var(--line);cursor:pointer;color:inherit;background:var(--card)}
+.hero-video-tile:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.hero-video-thumb{width:100%;height:100%;display:block;object-fit:cover;transition:.45s}
+.hero-video-tile:hover .hero-video-thumb{transform:scale(1.045)}
+.hero-video-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:58px;height:58px;border-radius:50%;display:grid;place-items:center;padding-left:4px;background:rgba(255,255,255,.9);color:var(--accent);font-size:19px;box-shadow:0 7px 24px rgba(0,0,0,.2);transition:.2s}
+.hero-video-tile:hover .hero-video-play{transform:translate(-50%,-50%) scale(1.06)}
 .ph{width:100%;height:100%;display:grid;place-items:center;color:#fff;font-size:30px;
   background:linear-gradient(150deg,#c9a685,#a86f4c 55%,#7f8f7b)}
 .ph.b{background:linear-gradient(150deg,#adbfa8,#6f7f6c 60%,#a86f4c)}
@@ -415,10 +421,19 @@ textarea.summary:focus{outline:none;border-color:var(--accent);background:var(--
         <a class="btn btn-ghost btn-sm" href="#booking"><span class="zh">直接預約</span><span class="en">Make an enquiry</span></a>
       </div>
     </div>
-    <div class="hero-art" aria-hidden="true">
-      <div class="tile t1"><div class="ph">▤</div></div>
-      <div class="tile t2"><div class="ph b">♪</div></div>
-      <div class="tile t3"><div class="ph c">✦</div></div>
+    <div class="hero-art">
+      <button class="tile t1 hero-video-tile" type="button" data-gal="0" aria-label="Play 千手觀音・金身醒覺">
+        <img class="hero-video-thumb" src="https://i.ytimg.com/vi/TXJ2a91cp6A/hqdefault.jpg" alt="">
+        <span class="hero-video-play" aria-hidden="true">▶</span>
+      </button>
+      <button class="tile t2 hero-video-tile" type="button" data-gal="6" aria-label="Play 千手觀音・金身醒覺">
+        <img class="hero-video-thumb" src="https://i.ytimg.com/vi/kjy2rbjisWo/hqdefault.jpg" alt="">
+        <span class="hero-video-play" aria-hidden="true">▶</span>
+      </button>
+      <button class="tile t3 hero-video-tile" type="button" data-gal="5" aria-label="Play 千手觀音・金身醒覺">
+        <img class="hero-video-thumb" src="https://i.ytimg.com/vi/x5aTL7C3ZJM/hqdefault.jpg" alt="">
+        <span class="hero-video-play" aria-hidden="true">▶</span>
+      </button>
     </div>
   </div>
 </section>
@@ -1499,6 +1514,7 @@ const CONTACT = {
     const m = e.target.closest('[data-gal]'); if(!m) return;
     openLightbox(+m.dataset.gal);
   });
+  $$('.hero-video-tile').forEach(b => b.addEventListener('click', () => openLightbox(+b.dataset.gal)));
   $('#propGrid').addEventListener('click', e => {
     const b = e.target.closest('[data-book]');
     if(!b){
