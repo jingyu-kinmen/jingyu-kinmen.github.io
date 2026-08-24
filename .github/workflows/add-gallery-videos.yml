@@ -1,0 +1,71 @@
+name: Add gallery YouTube videos
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  update-gallery:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Add videos to gallery
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+
+          anchor = """  {kind:'video', youtube:'', src:'', img:'',
+             title:{zh:'客棧・房間巡禮',en:'Inn Room Tour'},
+             desc:{zh:'夏興客棧每個房間的樣子。',en:'Every room at Xiaxing Inn.'}},"""
+
+          videos = [
+              'Us73eMT4qUo',
+              'nwul-lB8slc',
+              'Nzs4uwpodC4',
+              'D5IeYHJE6Tw',
+              'x5aTL7C3ZJM',
+              'kjy2rbjisWo',
+          ]
+
+          title_zh = '千手觀音・金身醒覺'
+          title_en = 'Thousand-Armed Guanyin · Awakening'
+          desc_zh = '光影與香煙之間，千手觀音金身呈現莊嚴而寧靜的醒覺意象。'
+          desc_en = 'Amid light and incense, the golden Thousand-Armed Guanyin evokes a solemn and serene moment of awakening.'
+
+          entries = []
+          for vid in videos:
+              entries.append(
+                  "  {kind:'video', youtube:'%s', src:'', img:'https://i.ytimg.com/vi/%s/hqdefault.jpg',\n"
+                  "   title:{zh:'%s',en:'%s'},\n"
+                  "   desc:{zh:'%s',en:'%s'}}," % (vid, vid, title_zh, title_en, desc_zh, desc_en)
+              )
+
+          block = '\n'.join(entries)
+
+          if any(f"youtube:'{vid}'" in text for vid in videos):
+              raise SystemExit('One or more requested videos are already present; no change made.')
+
+          if anchor not in text:
+              raise SystemExit('Gallery anchor not found; no change made.')
+
+          text = text.replace(anchor, block + '\n\n' + anchor, 1)
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit gallery update and remove one-time workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git rm .github/workflows/add-gallery-videos.yml
+          git commit -m "Add six YouTube videos to gallery"
+          git push
