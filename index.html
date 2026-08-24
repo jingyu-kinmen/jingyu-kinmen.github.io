@@ -128,6 +128,7 @@ section.alt{background:var(--bg-2)}
 }
 .card:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(60,44,30,.13);border-color:#d9cbb8}
 .card-media{position:relative;aspect-ratio:4/3;background:var(--bg-2);overflow:hidden;cursor:pointer}
+.card-media.gallery-video{aspect-ratio:16/9}
 .card-media img{width:100%;height:100%;object-fit:cover;transition:.4s}
 .card:hover .card-media img{transform:scale(1.045)}
 /* used for product photos: shows the whole picture instead of cropping it to fill the box */
@@ -1082,7 +1083,7 @@ const CONTACT = {
           + ' muted loop playsinline preload="none" autoplay></video>'
         : mediaBox(g, idx, ICON[g.kind]);
       return '<article class="card">'
-        + '<div class="card-media" data-gal="'+idx+'">'
+        + '<div class="card-media '+(isVid?'gallery-video':'')+'" data-gal="'+idx+'">'
         +   '<span class="badge">'+esc(T(KIND[g.kind]))+'</span>'
         +   inner
         +   ((isVid||g.kind==='music') ? '<div class="play"><span>'+(isVid?'▶':'♪')+'</span></div>' : '')
