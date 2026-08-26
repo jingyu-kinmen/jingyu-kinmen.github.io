@@ -1,0 +1,80 @@
+name: Apply final video metadata
+
+on:
+  push:
+    paths:
+      - '.github/workflows/video-metadata-final.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply metadata safely
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          lines=p.read_text(encoding='utf-8').splitlines()
+          items={
+            'TXJ2a91cp6A':('千手觀音・金身醒覺','Thousand-Armed Guanyin · Awakening','莊嚴的千手觀音金身在寺院香煙與光影之間，呈現寧靜而細微的醒覺意象。','A serene Thousand-Armed Guanyin statue appears subtly awakened amid incense smoke, practical temple light and quiet devotional atmosphere.'),
+            'Us73eMT4qUo':('焚香祈福・一縷心香','Offering Incense · A Thread of Prayer','一縷香火在燭光中緩緩升起，雙手點燃香枝，記錄祭壇前安靜而虔誠的祈福時刻。','Hands light a single incense stick by candlelight, capturing a quiet and intimate moment of prayer at a household altar.'),
+            'nwul-lB8slc':('南海觀音・晨露蓮池','Guanyin of the South Sea · Dawn Lotus Pond','黎明的蓮池畔，南海觀音持柳枝與淨瓶靜立於薄霧之中，呈現清晨寧靜祥和的氣息。','At first light beside a still lotus pond, Guanyin stands quietly with a willow branch and simple vase amid soft morning mist.'),
+            'Nzs4uwpodC4':('星河織女・銀絲織夢','Celestial Weaver · Dreaming in Silver Threads','星河之下，織女以銀絲般的光線編織夢境，宛如在星空中創造一段奇幻的光影故事。','A celestial figure weaves a strand of light beneath a projected galaxy, creating a quiet fantasy scene of starlight and dreams.'),
+            'D5IeYHJE6Tw':('媽祖鎮海・廟埕觀潮','Mazu Guards the Sea · Watching the Tide','臨海古廟中，媽祖端坐守望海面；夕陽、海風與廟宇風鈴交織出溫暖而平靜的海岸景象。','Inside a weathered coastal temple pavilion, Mazu watches the sea as warm late-afternoon light, sea breeze and temple bells fill the scene.'),
+            'x5aTL7C3ZJM':('星河織女・銀絲織夢','Celestial Weaver · Dreaming in Silver Threads','星河之下，織女以銀絲般的光線編織夢境，宛如在星空中創造一段奇幻的光影故事。','A celestial figure weaves a strand of light beneath a projected galaxy, creating a quiet fantasy scene of starlight and dreams.'),
+            'kjy2rbjisWo':('竹亭靜修・蓮花禪心','Quiet Meditation in the Bamboo Pavilion · Lotus Zen','白衣女子靜坐竹亭，以蓮花入禪；晨光、瀑布與荷花交織出寧靜的庭園修行景象。','A woman meditates in a bamboo pavilion with a lotus, surrounded by morning light, a small waterfall and a quiet garden.')
+          }
+          out=[]
+          i=0
+          seen=set()
+          while i<len(lines):
+            line=lines[i]
+            vid=next((v for v in items if v in line and "youtube:'" in line),None)
+            if vid:
+              zh,en,dz,de=items[vid]
+              out += [f"  {{kind:'video', youtube:'{vid}', src:'', img:'https://i.ytimg.com/vi/{vid}/maxresdefault.jpg',",f"   title:{{zh:'{zh}',en:'{en}'}},",f"   desc:{{zh:'{dz}',en:'{de}'}}}},"]
+              seen.add(vid)
+              i += 3
+              continue
+            out.append(line)
+            i += 1
+          if seen != set(items):
+            raise SystemExit('Missing video IDs: '+str(set(items)-seen))
+          # Restore the one product entry accidentally altered by the earlier attempt.
+          text='\n'.join(out)+'\n'
+          start=text.find("  {cat:'other', img:'ginger-poster.png'")
+          end=text.find("\n\n  /* 這一項", start)
+          if start<0 or end<0: raise SystemExit('Ginger product entry not found')
+          product="""  {cat:'other', img:'ginger-poster.png', imgs:[], ratio:'1054/1492', price:'洽詢 On request',
+   name:{zh:'薑皇王 300 粒',en:'Ukon King · 300 capsules'},
+   desc:{zh:'日本甘味人生，六種薑黃複方，一盒 300 粒。',en:'A six-turmeric blend from 甘味人生, Japan. 300 capsules.'},
+   facts:{zh:[['內容量','1 盒 300 粒'],['品牌','甘味人生（日本）'],['配方','六種薑黃複方']],
+          en:[['Contents','300 capsules'],['Brand','Kanmi Jinsei (Japan)'],['Blend','Six turmeric varieties']]},
+   ingr:{zh:'',en:''},
+   use:{zh:'',en:''},
+   note:{zh:'這是食品，不是藥品。孕婦、膽道疾病或正在服藥的人請先問過醫師。',en:'A food product, not a medicine. If pregnant, managing a bile-duct condition or taking medication, ask your doctor first.'}},"""
+          text=text[:start]+product+text[end:]
+          text=text.replace('transform:scale(2.25);transition:.45s','transform:scale(2.35);transition:.45s').replace('transform:scale(2.32)','transform:scale(2.42)')
+          p.write_text(text,encoding='utf-8')
+          PY
+      - name: Commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git diff --cached --quiet && exit 0
+          git commit -m 'Apply final individual video metadata and crop'
+          git push
+      - name: Remove workflow
+        if: always()
+        run: |
+          git rm -f .github/workflows/video-metadata-final.yml || true
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Remove temporary video metadata workflow' || true
+          git push || true
