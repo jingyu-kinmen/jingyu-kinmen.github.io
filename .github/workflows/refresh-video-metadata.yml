@@ -1,0 +1,103 @@
+name: Update video metadata
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update video titles and descriptions
+        run: |
+          python -m pip install --quiet yt-dlp
+          python <<'PY'
+          from pathlib import Path
+          import re
+          from yt_dlp import YoutubeDL
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+
+          ids = [
+              'TXJ2a91cp6A', 'Us73eMT4qUo', 'nwul-lB8slc',
+              'Nzs4uwpodC4', 'D5IeYHJE6Tw', 'x5aTL7C3ZJM',
+              'kjy2rbjisWo'
+          ]
+
+          def js_escape(value):
+              value = value or ''
+              return value.replace('\\', '\\\\').replace("'", "\\'").replace('\n', ' ').replace('\r', ' ')
+
+          ydl_opts = {'quiet': True, 'skip_download': True, 'no_warnings': True}
+          metadata = {}
+          with YoutubeDL(ydl_opts) as ydl:
+              for video_id in ids:
+                  try:
+                      info = ydl.extract_info(f'https://www.youtube.com/watch?v={video_id}', download=False)
+                      metadata[video_id] = {
+                          'title': info.get('title') or 'Video',
+                          'description': info.get('description') or ''
+                      }
+                  except Exception as exc:
+                      print(f'Could not read {video_id}: {exc}')
+
+          for video_id, data in metadata.items():
+              title_zh = js_escape(data['title'])
+              desc_zh = js_escape(data['description'])
+              # Keep the English card fields useful and concise when the site is switched to English.
+              title_en = title_zh
+              desc_en = desc_zh
+
+              pattern = re.compile(
+                  rf"(\{{kind:'video', youtube:'{re.escape(video_id)}'.*?\n\s*title:\{{zh:')[^']*('.*?en:')[^']*('\\}}\,\n\s*desc:\{{zh:')[^']*('.*?en:')[^']*('\}}\}}),",
+                  re.S
+              )
+              replacement = (
+                  rf"\1{title_zh}\2{title_en}\3{desc_zh}\4{desc_en}\5,"
+              )
+              text, count = pattern.subn(replacement, text, count=1)
+              if count == 0:
+                  print(f'No gallery entry matched {video_id}')
+
+          # Remove letterbox bars baked into YouTube thumbnails by cropping the image inside its tile.
+          text = text.replace(
+              '.hero-video-thumb{width:100%;height:100%;display:block;object-fit:cover;transform:scale(1.18);',
+              '.hero-video-thumb{width:100%;height:100%;display:block;object-fit:cover;transform:scale(1.3);'
+          )
+          text = text.replace(
+              '.hero-video-tile:hover .hero-video-thumb{transform:scale(1.23)}',
+              '.hero-video-tile:hover .hero-video-thumb{transform:scale(1.34)}'
+          )
+          text = text.replace(
+              '.card-media.gallery-video{aspect-ratio:16/9}',
+              '.card-media.gallery-video{aspect-ratio:16/9}\n.card-media.gallery-video img{transform:scale(1.28)}\n.card:hover .card-media.gallery-video img{transform:scale(1.34)}'
+          )
+
+          # Keep hero accessibility labels in sync with the actual YouTube titles.
+          for index, video_id in enumerate(['TXJ2a91cp6A', 'kjy2rbjisWo']):
+              if video_id in metadata:
+                  text = text.replace(
+                      f'aria-label="Play 千手觀音・金身醒覺"',
+                      f'aria-label="Play {js_escape(metadata[video_id]["title"])}"',
+                      1
+                  )
+
+          path.write_text(text, encoding='utf-8')
+          PY
+      - name: Commit changes and remove temporary workflow
+        run: |
+          rm -f .github/workflows/refresh-video-metadata.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/refresh-video-metadata.yml
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Fix video crops and use YouTube metadata"
+          git push
