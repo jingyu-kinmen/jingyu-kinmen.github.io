@@ -1,0 +1,58 @@
+name: Add five gallery videos
+
+on:
+  push:
+    paths:
+      - '.github/workflows/add-five-videos.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  add:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add videos to gallery
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          videos=[
+            ('lKdbZkuoK2Q','新作影像・01','New Film · 01'),
+            ('cSQlerEFZM8','新作影像・02','New Film · 02'),
+            ('NAD0GfVmNa8','新作影像・03','New Film · 03'),
+            ('nC4AqPPIOls','新作影像・04','New Film · 04'),
+            ('3GBoOLpQ43s','新作影像・05','New Film · 05'),
+          ]
+          missing=[v for v in videos if "youtube:'"+v[0]+"'" not in s]
+          if not missing:
+            raise SystemExit(0)
+          marker="\n  {kind:'video', youtube:'', src:'', img:'',\n   title:{zh:'客棧・房間巡禮'"
+          pos=s.find(marker)
+          if pos<0: raise SystemExit('Gallery insertion point not found')
+          blocks=[]
+          for vid,zh,en in missing:
+            blocks.append("  {kind:'video', youtube:'%s', src:'', img:'https://i.ytimg.com/vi/%s/maxresdefault.jpg',\n   title:{zh:'%s',en:'%s'},\n   desc:{zh:'最新加入的影像作品。',en:'A newly added film from the collection.'}},\n"%(vid,vid,zh,en))
+          s=s[:pos]+"\n"+"\n".join(blocks)+s[pos:]
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit and push
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add five new YouTube videos to gallery'
+            git push
+          fi
+      - name: Remove temporary workflow
+        if: always()
+        run: |
+          git pull --rebase || true
+          git rm -f .github/workflows/add-five-videos.yml || true
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Remove temporary video workflow' || true
+          git push || true
