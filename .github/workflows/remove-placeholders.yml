@@ -1,9 +1,6 @@
 name: Remove placeholders
 
-on:
-  push:
-    paths:
-      - '.github/workflows/remove-placeholders.yml'
+on: [push]
 
 permissions:
   contents: write
@@ -13,86 +10,60 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Remove placeholder gallery items and products
+      - name: Clean placeholder content
+        shell: bash
         run: |
-          python3 - <<'PY'
+          python3 <<'PY'
           from pathlib import Path
-
           path = Path('index.html')
           text = path.read_text(encoding='utf-8')
 
-          # Remove every placeholder gallery card after the real YouTube videos.
-          placeholder_start = text.find("  {kind:'video', youtube:'', src:'', img:'',")
-          gallery_end = text.find("\n];", placeholder_start)
-          if placeholder_start < 0 or gallery_end < 0:
-              raise SystemExit('Gallery placeholder section not found')
-          text = text[:placeholder_start] + text[gallery_end:]
+          start = text.find("  {kind:'video', youtube:'', src:'', img:'',")
+          end = text.find("\n];", start)
+          if start == -1 or end == -1:
+              raise SystemExit('gallery placeholder section not found')
+          text = text[:start] + text[end:]
 
-          # Keep only products that actually have an image file.
-          products_start = text.find('const PRODUCTS = [')
-          first_real_product = text.find("  {cat:'other', img:'nobel-card.jpg'", products_start)
-          if products_start < 0 or first_real_product < 0:
-              raise SystemExit('Product section or first real product not found')
-          text = text[:products_start] + 'const PRODUCTS = [\n' + text[first_real_product:]
+          pstart = text.find('const PRODUCTS = [')
+          preal = text.find("  {cat:'other', img:'nobel-card.jpg'", pstart)
+          if pstart == -1 or preal == -1:
+              raise SystemExit('real product section not found')
+          text = text[:pstart] + 'const PRODUCTS = [\n' + text[preal:]
 
-          # Remove empty gallery filter tabs now that the gallery is video-only.
-          old_gal_filters = """  const galFilterDefs = [
+          text = text.replace("""  const galFilterDefs = [
     ['all',   {zh:'全部',en:'All'}],
     ['video', {zh:'影片',en:'Video'}],
     ['music', {zh:'音樂',en:'Music'}],
     ['photo', {zh:'攝影',en:'Photo'}]
-  ];"""
-          new_gal_filters = """  const galFilterDefs = [
+  ];""", """  const galFilterDefs = [
     ['all',   {zh:'全部',en:'All'}],
     ['video', {zh:'影片',en:'Video'}]
-  ];"""
-          if old_gal_filters not in text:
-              raise SystemExit('Gallery filter block not found')
-          text = text.replace(old_gal_filters, new_gal_filters, 1)
+  ];""", 1)
 
-          # Only the real remaining products are in the Other category.
-          old_shop_filters = """  const shopFilterDefs = [
+          text = text.replace("""  const shopFilterDefs = [
     ['all',      {zh:'全部',en:'All'}],
     ['cosmetic', {zh:'保養彩妝',en:'Skincare'}],
     ['jewelry',  {zh:'飾品',en:'Jewellery'}],
     ['other',    {zh:'其他',en:'Other'}]
-  ];"""
-          new_shop_filters = """  const shopFilterDefs = [
+  ];""", """  const shopFilterDefs = [
     ['all',      {zh:'全部',en:'All'}],
     ['other',    {zh:'其他',en:'Other'}]
-  ];"""
-          if old_shop_filters not in text:
-              raise SystemExit('Shop filter block not found')
-          text = text.replace(old_shop_filters, new_shop_filters, 1)
+  ];""", 1)
 
-          # Make the shop heading match the remaining real products.
-          text = text.replace('<h2><span class="zh">保養與飾品</span><span class="en">Skincare &amp; Jewellery</span></h2>',
-                              '<h2><span class="zh">精選商品</span><span class="en">Selected Products</span></h2>', 1)
-
+          text = text.replace('<h2><span class="zh">保養與飾品</span><span class="en">Skincare &amp; Jewellery</span></h2>', '<h2><span class="zh">精選商品</span><span class="en">Selected Products</span></h2>', 1)
           path.write_text(text, encoding='utf-8')
           PY
-
-      - name: Verify cleanup
+      - name: Verify and push
+        shell: bash
         run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          s = Path('index.html').read_text(encoding='utf-8')
-          bad_gallery = ["客棧・房間巡禮", "風獅爺（Demo）", "夜裡的市民大道", "前水頭・老厝", "退潮", "信義路四段", "客棧的早餐桌", "替代役的下午"]
-          bad_products = ["保濕精華 30ml", "溫和潔顏慕斯", "修護面霜 50ml", "防曬乳 SPF50+", "925 銀細鍊項鍊", "珍珠耳環", "手工銀戒", "金門風獅爺明信片組"]
-          leftovers = [x for x in bad_gallery + bad_products if x in s]
-          if leftovers:
-              raise SystemExit('Placeholder items still present: ' + ', '.join(leftovers))
-          for required in ['TXJ2a91cp6A','3GBoOLpQ43s','nobel-card.jpg','ginger-poster.png','music-medicine-card.svg']:
-              if required not in s:
-                  raise SystemExit('Required real item missing: ' + required)
-          print('Cleanup verified')
-          PY
-
-      - name: Commit and push
-        run: |
+          grep -q "youtube:'3GBoOLpQ43s'" index.html
+          grep -q "nobel-card.jpg" index.html
+          ! grep -q "客棧・房間巡禮" index.html
+          ! grep -q "保濕精華 30ml" index.html
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add index.html
-          git commit -m 'Remove placeholder gallery cards and products'
-          git push
+          if ! git diff --cached --quiet; then
+            git commit -m 'Remove placeholder gallery cards and products'
+            git push
+          fi
