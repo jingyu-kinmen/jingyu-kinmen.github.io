@@ -1,0 +1,82 @@
+name: Update new video metadata
+
+on:
+  push:
+    paths:
+      - '.github/workflows/update-new-video-metadata.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update the five new gallery entries
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          lines = path.read_text(encoding='utf-8').splitlines()
+
+          items = {
+            'lKdbZkuoK2Q': (
+              '風獅爺鎮風', 'Wind Lion God · Guardian of the Wind',
+              '金門海岸村落邊，一尊風化的石雕風獅爺迎著海風守望；草叢、祈福旗與遠方浪聲構成樸實的島嶼風景。',
+              'At the edge of a Kinmen coastal village, a weathered stone Wind Lion God stands against the sea breeze as grass and prayer flags move around it.'
+            ),
+            'cSQlerEFZM8': (
+              '土地公・樹下閒坐', 'Tu Di Gong · Resting Beneath the Banyan',
+              '土地公坐在老榕樹下的石椅上，午後光影穿過枝葉，蟬鳴、鳥聲與遠處機車聲交織成安靜的村落日常。',
+              'Tu Di Gong rests beneath an old banyan tree as shifting afternoon light, cicadas and distant village sounds create a quiet everyday portrait.'
+            ),
+            'NAD0GfVmNa8': (
+              '城隍爺・廟堂夜色', 'City God · Temple Hall at Dusk',
+              '暮色中的廟堂裡，城隍爺端坐於紅燈籠與香煙之間；暖黃燈火與門外藍色天光交會，營造沉靜而莊嚴的夜色。',
+              'At dusk, the City God sits beneath red lanterns and incense haze as warm temple light meets the cool blue light beyond the open doors.'
+            ),
+            'nC4AqPPIOls': (
+              '晨鐘・山寺薄霧', 'Morning Bell · Misty Mountain Temple',
+              '清晨薄霧籠罩山寺庭院，僧人立於古鐘旁準備撞鐘；冷色晨光、松林與低沉鐘聲帶出寧靜的破曉時刻。',
+              'Morning mist settles over a mountain temple as a monk stands beside a bronze bell, with cool dawn light and a deep resonant tone filling the courtyard.'
+            ),
+            '3GBoOLpQ43s': (
+              '佛前供花', 'Offering Flowers Before the Buddha',
+              '一尊帶著歲月銅綠的佛像前放著新鮮蓮花，油燈微光輕輕掠過表面，呈現安靜、細緻而虔誠的供花片刻。',
+              'A fresh lotus rests before a weathered bronze Buddha while soft oil-lamp light reveals the patina in a quiet, intimate devotional detail.'
+            ),
+          }
+
+          out = []
+          i = 0
+          seen = set()
+          while i < len(lines):
+              line = lines[i]
+              vid = next((v for v in items if f"youtube:'{v}'" in line), None)
+              if vid:
+                  zh, en, dz, de = items[vid]
+                  out.append(f"  {{kind:'video', youtube:'{vid}', src:'', img:'https://i.ytimg.com/vi/{vid}/maxresdefault.jpg',")
+                  out.append(f"   title:{{zh:'{zh}',en:'{en}'}},")
+                  out.append(f"   desc:{{zh:'{dz}',en:'{de}'}}}},")
+                  seen.add(vid)
+                  i += 3
+                  continue
+              out.append(line)
+              i += 1
+
+          missing = set(items) - seen
+          if missing:
+              raise SystemExit('Missing video IDs: ' + ', '.join(sorted(missing)))
+
+          path.write_text('\n'.join(out) + '\n', encoding='utf-8')
+          PY
+      - name: Commit and push
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git diff --cached --quiet && exit 0
+          git commit -m 'Update five new video titles and descriptions'
+          git push
