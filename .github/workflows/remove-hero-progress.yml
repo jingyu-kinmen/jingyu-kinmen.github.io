@@ -1,0 +1,47 @@
+name: Remove hero progress bar
+
+on:
+  push:
+    paths:
+      - '.github/workflows/remove-hero-progress.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove white hero progress line
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          removals = [
+            ".hero-progress{position:absolute;left:0;right:0;bottom:0;height:3px;z-index:4;background:rgba(255,255,255,.16)}\n",
+            ".hero-progress::after{content:'';display:block;height:100%;width:0;background:rgba(255,255,255,.86);animation:heroProgress 5s linear infinite}\n",
+            ".hero-rotator.restart-progress .hero-progress::after{animation:none}\n",
+            ".hero-rotator.restart-progress .hero-progress::after{animation:heroProgress 5s linear infinite}\n",
+            "@keyframes heroProgress{from{width:0}to{width:100%}}\n",
+            "        <span class=\"hero-progress\" aria-hidden=\"true\"></span>\n",
+            "      heroRotator.classList.remove('restart-progress');\n",
+            "      void heroRotator.offsetWidth;\n",
+            "      heroRotator.classList.add('restart-progress');\n",
+          ]
+          for x in removals:
+              s = s.replace(x, '')
+          if 'hero-progress' in s:
+              raise SystemExit('hero-progress still present')
+          p.write_text(s, encoding='utf-8')
+          print('Hero progress bar removed')
+          PY
+      - name: Commit and clean up workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/remove-hero-progress.yml
+          git add index.html
+          git commit -m 'Remove hero progress bar'
+          git push
