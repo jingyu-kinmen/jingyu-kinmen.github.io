@@ -552,7 +552,7 @@ textarea.summary:focus{outline:none;border-color:var(--accent);background:var(--
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow"><span class="zh">選物</span><span class="en">Selections</span></div>
-      <h2><span class="zh">保養與飾品</span><span class="en">Skincare &amp; Jewellery</span></h2>
+      <h2><span class="zh">精選商品</span><span class="en">Selected Products</span></h2>
       <p>
         <span class="zh">數量不多，都是自己用過、戴過才放上來的。挑好按「加入詢問」，最後會產生一張清單傳給我們對數量與運費。</span>
         <span class="en">A short list — everything here we've used or worn ourselves. Add what you like; you'll get a tidy order summary to send us for stock and shipping.</span>
@@ -825,37 +825,7 @@ const GALLERY = [
    title:{zh:'佛前供花',en:'Offering Flowers Before the Buddha'},
    desc:{zh:'一尊帶著歲月銅綠的佛像前放著新鮮蓮花，油燈微光輕輕掠過表面，呈現安靜、細緻而虔誠的供花片刻。',en:'A fresh lotus rests before a weathered bronze Buddha while soft oil-lamp light reveals the patina in a quiet, intimate devotional detail.'}},
 
-  {kind:'video', youtube:'', src:'', img:'',
-   title:{zh:'客棧・房間巡禮',en:'Inn Room Tour'},
-   desc:{zh:'夏興客棧每個房間的樣子。',en:'Every room at Xiaxing Inn.'}},
 
-  {kind:'music', src:'', img:'',
-   title:{zh:'風獅爺（Demo）',en:'Wind Lion God (Demo)'},
-   desc:{zh:'一段給金門寫的東西，還沒混完。',en:'Something written for Kinmen. Not finished mixing.'}},
-
-  {kind:'music', src:'', img:'',
-   title:{zh:'夜裡的市民大道',en:'Civic Boulevard at Night'},
-   desc:{zh:'加班回家路上錄的。',en:'Recorded walking home from a late shift.'}},
-
-  {kind:'photo', img:'',
-   title:{zh:'前水頭・老厝',en:'Qianshuitou Old Houses'},
-   desc:{zh:'紅磚、燕尾脊、下午三點的光。',en:'Red brick, swallowtail ridges, three o\'clock light.'}},
-
-  {kind:'photo', img:'',
-   title:{zh:'退潮',en:'Low Tide'},
-   desc:{zh:'海水退了以後留下的東西。',en:'What the water leaves behind.'}},
-
-  {kind:'photo', img:'',
-   title:{zh:'信義路四段',en:'Xinyi Road Sec. 4'},
-   desc:{zh:'辦公室樓下，等紅燈的人。',en:'Below the office, waiting for the light.'}},
-
-  {kind:'photo', img:'',
-   title:{zh:'客棧的早餐桌',en:'Breakfast at the Inn'},
-   desc:{zh:'豆漿、蛋餅、還有一隻不請自來的貓。',en:'Soy milk, egg crepe, and one uninvited cat.'}},
-
-  {kind:'photo', img:'',
-   title:{zh:'替代役的下午',en:'Afternoon, Service Year'},
-   desc:{zh:'手機、筆電、還有很多時間。',en:'A phone, a laptop, and a lot of time.'}}
 ];
 
 /* ---------------------------------------------------------
@@ -946,78 +916,6 @@ const PROPERTIES = [
 ];
 
 const PRODUCTS = [
-  {cat:'cosmetic', img:'', imgs:[], price:'NT$680',
-   name:{zh:'保濕精華 30ml',en:'Hydrating Serum 30ml'},
-   desc:{zh:'冬天在金門也不緊繃。',en:'Holds up through a Kinmen winter.'},
-   facts:{zh:[['容量','30 ml']],
-          en:[['Size','30 ml']]},
-   ingr:{zh:'',en:''},
-   use:{zh:'',en:''},
-   note:{zh:'',en:''}},
-
-  {cat:'cosmetic', img:'', imgs:[], price:'NT$450',
-   name:{zh:'溫和潔顏慕斯',en:'Gentle Cleansing Mousse'},
-   desc:{zh:'洗完不澀，敏感肌也可以。',en:'No tight feeling. Sensitive-skin friendly.'},
-   facts:{zh:[],
-          en:[]},
-   ingr:{zh:'',en:''},
-   use:{zh:'',en:''},
-   note:{zh:'',en:''}},
-
-  {cat:'cosmetic', img:'', imgs:[], price:'NT$890',
-   name:{zh:'修護面霜 50ml',en:'Repair Cream 50ml'},
-   desc:{zh:'晚上厚敷，隔天有差。',en:'Layer it on at night; you notice by morning.'},
-   facts:{zh:[['容量','50 ml']],
-          en:[['Size','50 ml']]},
-   ingr:{zh:'',en:''},
-   use:{zh:'',en:''},
-   note:{zh:'',en:''}},
-
-  {cat:'cosmetic', img:'', imgs:[], price:'NT$320',
-   name:{zh:'防曬乳 SPF50+',en:'Sunscreen SPF50+'},
-   desc:{zh:'海邊拍照必備，不油。',en:'Non-greasy — essential for shoots by the sea.'},
-   facts:{zh:[],
-          en:[]},
-   ingr:{zh:'',en:''},
-   use:{zh:'',en:''},
-   note:{zh:'',en:''}},
-
-  {cat:'jewelry', img:'', imgs:[], price:'NT$1,280',
-   name:{zh:'925 銀細鍊項鍊',en:'925 Silver Fine Chain'},
-   desc:{zh:'很細，適合每天戴著不拿下來。',en:'Thin enough to leave on every day.'},
-   facts:{zh:[['材質','925 純銀']],
-          en:[['Material','925 sterling silver']]},
-   ingr:{zh:'925 純銀（銀 92.5%）',en:'Sterling silver (92.5% silver)'},
-   use:{zh:'',en:''},
-   note:{zh:'',en:''}},
-
-  {cat:'jewelry', img:'', imgs:[], price:'NT$980',
-   name:{zh:'珍珠耳環',en:'Pearl Earrings'},
-   desc:{zh:'一顆的那種，不會太隆重。',en:'Single pearl — never overdressed.'},
-   facts:{zh:[],
-          en:[]},
-   ingr:{zh:'',en:''},
-   use:{zh:'',en:''},
-   note:{zh:'',en:''}},
-
-  {cat:'jewelry', img:'', imgs:[], price:'NT$1,650',
-   name:{zh:'手工銀戒',en:'Handmade Silver Ring'},
-   desc:{zh:'表面有槌打痕，每只不太一樣。',en:'Hammered surface; no two are alike.'},
-   facts:{zh:[['材質','925 純銀'],['工法','手工槌打']],
-          en:[['Material','925 sterling silver'],['Finish','Hand-hammered']]},
-   ingr:{zh:'925 純銀（銀 92.5%）',en:'Sterling silver (92.5% silver)'},
-   use:{zh:'',en:''},
-   note:{zh:'手工製作，每只紋路略有差異，不算瑕疵。',en:'Hand-made — the marks differ on every ring; that is not a fault.'}},
-
-  {cat:'other', img:'', imgs:[], price:'NT$550',
-   name:{zh:'金門風獅爺明信片組',en:'Kinmen Wind Lion Postcards'},
-   desc:{zh:'我拍的照片印的，一組八張。',en:'Printed from my own photographs. Set of eight.'},
-   facts:{zh:[['張數','8 張 / 組'],['攝影','我們自己拍的']],
-          en:[['Quantity','8 per set'],['Photography','Our own']]},
-   ingr:{zh:'',en:''},
-   use:{zh:'',en:''},
-   note:{zh:'照片版權是我們的，請勿商業使用。',en:'The photographs are ours — please do not use them commercially.'}},
-
   {cat:'other', img:'nobel-card.jpg', imgs:[], price:'洽詢 On request',
    name:{zh:'精醇能量飲 10 包',en:'Nobel Energy Drink · 10 sachets'},
    desc:{zh:'綠花椰菜與法國葡萄萃取，一盒十包，每天一包沖水喝。',en:'Broccoli and France grape extract. Ten sachets; one a day, mixed with water.'},
@@ -1102,9 +1000,7 @@ const CONTACT = {
   let galFilter = 'all';
   const galFilterDefs = [
     ['all',   {zh:'全部',en:'All'}],
-    ['video', {zh:'影片',en:'Video'}],
-    ['music', {zh:'音樂',en:'Music'}],
-    ['photo', {zh:'攝影',en:'Photo'}]
+    ['video', {zh:'影片',en:'Video'}]
   ];
   function renderGalFilters(){
     $('#galFilters').innerHTML = galFilterDefs.map(([k,l])=>
@@ -1198,8 +1094,6 @@ const CONTACT = {
   let shopFilter = 'all';
   const shopFilterDefs = [
     ['all',      {zh:'全部',en:'All'}],
-    ['cosmetic', {zh:'保養彩妝',en:'Skincare'}],
-    ['jewelry',  {zh:'飾品',en:'Jewellery'}],
     ['other',    {zh:'其他',en:'Other'}]
   ];
   const cart = {};
