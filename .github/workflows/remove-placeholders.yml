@@ -1,6 +1,9 @@
 name: Remove placeholders
 
-on: [push]
+on:
+  push:
+    paths:
+      - '.github/workflows/remove-placeholders.yml'
 
 permissions:
   contents: write
@@ -10,60 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Clean placeholder content
-        shell: bash
-        run: |
-          python3 <<'PY'
-          from pathlib import Path
-          path = Path('index.html')
-          text = path.read_text(encoding='utf-8')
-
-          start = text.find("  {kind:'video', youtube:'', src:'', img:'',")
-          end = text.find("\n];", start)
-          if start == -1 or end == -1:
-              raise SystemExit('gallery placeholder section not found')
-          text = text[:start] + text[end:]
-
-          pstart = text.find('const PRODUCTS = [')
-          preal = text.find("  {cat:'other', img:'nobel-card.jpg'", pstart)
-          if pstart == -1 or preal == -1:
-              raise SystemExit('real product section not found')
-          text = text[:pstart] + 'const PRODUCTS = [\n' + text[preal:]
-
-          text = text.replace("""  const galFilterDefs = [
-    ['all',   {zh:'全部',en:'All'}],
-    ['video', {zh:'影片',en:'Video'}],
-    ['music', {zh:'音樂',en:'Music'}],
-    ['photo', {zh:'攝影',en:'Photo'}]
-  ];""", """  const galFilterDefs = [
-    ['all',   {zh:'全部',en:'All'}],
-    ['video', {zh:'影片',en:'Video'}]
-  ];""", 1)
-
-          text = text.replace("""  const shopFilterDefs = [
-    ['all',      {zh:'全部',en:'All'}],
-    ['cosmetic', {zh:'保養彩妝',en:'Skincare'}],
-    ['jewelry',  {zh:'飾品',en:'Jewellery'}],
-    ['other',    {zh:'其他',en:'Other'}]
-  ];""", """  const shopFilterDefs = [
-    ['all',      {zh:'全部',en:'All'}],
-    ['other',    {zh:'其他',en:'Other'}]
-  ];""", 1)
-
-          text = text.replace('<h2><span class="zh">保養與飾品</span><span class="en">Skincare &amp; Jewellery</span></h2>', '<h2><span class="zh">精選商品</span><span class="en">Selected Products</span></h2>', 1)
-          path.write_text(text, encoding='utf-8')
-          PY
-      - name: Verify and push
-        shell: bash
-        run: |
-          grep -q "youtube:'3GBoOLpQ43s'" index.html
-          grep -q "nobel-card.jpg" index.html
-          ! grep -q "客棧・房間巡禮" index.html
-          ! grep -q "保濕精華 30ml" index.html
+      - run: python3 scripts/remove_placeholders.py
+      - run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add index.html
-          if ! git diff --cached --quiet; then
-            git commit -m 'Remove placeholder gallery cards and products'
-            git push
-          fi
+          git commit -m 'Remove placeholder gallery cards and products'
+          git push
