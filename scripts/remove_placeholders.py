@@ -54,19 +54,33 @@ text = text.replace(
     1,
 )
 
-# Verify the real content remains and the placeholders are gone.
+# Verify real content remains.
 for required in ('TXJ2a91cp6A', '3GBoOLpQ43s', 'nobel-card.jpg', 'ginger-poster.png', 'music-medicine-card.svg'):
     if required not in text:
         raise SystemExit('required real item missing: ' + required)
 
-for removed in (
-    '客棧・房間巡禮', '風獅爺（Demo）', '夜裡的市民大道', '前水頭・老厝',
-    '退潮', '信義路四段', '客棧的早餐桌', '替代役的下午',
-    '保濕精華 30ml', '溫和潔顏慕斯', '修護面霜 50ml', '防曬乳 SPF50+',
-    '925 銀細鍊項鍊', '珍珠耳環', '手工銀戒', '金門風獅爺明信片組',
-):
-    if removed in text:
-        raise SystemExit('placeholder still present: ' + removed)
+# Verify exact placeholder entries are gone without matching unrelated text elsewhere.
+removed_markers = (
+    "title:{zh:'客棧・房間巡禮'",
+    "title:{zh:'風獅爺（Demo）'",
+    "title:{zh:'夜裡的市民大道'",
+    "title:{zh:'前水頭・老厝'",
+    "title:{zh:'退潮'",
+    "title:{zh:'信義路四段'",
+    "title:{zh:'客棧的早餐桌'",
+    "title:{zh:'替代役的下午'",
+    "name:{zh:'保濕精華 30ml'",
+    "name:{zh:'溫和潔顏慕斯'",
+    "name:{zh:'修護面霜 50ml'",
+    "name:{zh:'防曬乳 SPF50+'",
+    "name:{zh:'925 銀細鍊項鍊'",
+    "name:{zh:'珍珠耳環'",
+    "name:{zh:'手工銀戒'",
+    "name:{zh:'金門風獅爺明信片組'",
+)
+for marker in removed_markers:
+    if marker in text:
+        raise SystemExit('placeholder still present: ' + marker)
 
 path.write_text(text, encoding='utf-8')
 print('Placeholder cleanup verified')
