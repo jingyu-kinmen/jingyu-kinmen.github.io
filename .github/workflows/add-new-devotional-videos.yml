@@ -1,0 +1,87 @@
+name: Add new devotional videos
+
+on:
+  push:
+    paths:
+      - '.github/workflows/add-new-devotional-videos.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Add videos to gallery
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+
+          # NAD0GfVmNa8 is already on the site as 城隍爺・廟堂夜色, so do not duplicate it.
+          items = [
+            ('7IoZcheLUw8', '玄天上帝・雨夜鎮殿', 'Xuantian Shangdi · Temple Guardian on a Rainy Night',
+             '雨夜的古廟中，玄天上帝端坐於昏暗殿堂；油燈、紅燈籠與門外雨幕交織出沉靜而莊嚴的守夜景象。',
+             'On a rainy night, Xuantian Shangdi sits within a dark temple hall as oil lamps, red lanterns and rain beyond the doorway create a solemn, watchful atmosphere.'),
+            ('rc22FcpzpcM', '月下觀音・竹影清心', 'Guanyin by Moonlight · Bamboo Shadows',
+             '月色穿過竹葉落在白衣觀音與石牆之上，一盞暖燈映亮面容，竹影與夜風構成安靜清透的夜景。',
+             'Moonlight filters through bamboo onto Guanyin and the temple wall, while a single warm lantern and moving leaf shadows create a quiet night scene.'),
+            ('FqFjSzqRnq4', '虎爺・香案下守護', 'Tiger General · Guardian Beneath the Altar',
+             '香案下的虎爺帶著斑駁漆面與歲月痕跡，暖色燈光、香灰與來往腳步呈現廟宇裡低調而真實的守護角落。',
+             'Beneath the altar, a weathered Tiger General statue sits among incense dust and warm temple light as passing footsteps reveal a quiet, lived-in corner of the shrine.'),
+            ('dCbTzPmIK3A', '石獅守門・午後驟雨', 'Stone Lions · Afternoon Rain at the Temple Gate',
+             '午後驟雨打濕廟門前的老石獅，雨水沿著石雕與台階流下，門內暖光映在濕地上，留下安靜的雨中廟景。',
+             'An afternoon shower darkens the old stone lions at a temple gate as rain runs across the carving and warm interior light reflects on the wet steps.'),
+            ('g1SLMWxK-QA', '金門古厝・神明廳晨光', 'Kinmen Ancestral Hall · Morning Light',
+             '金門古厝的神明廳在晨光中慢慢亮起，香煙、紅磚、木門與帶著歲月痕跡的祭壇，記錄日常信仰安靜的一刻。',
+             'Morning light enters an old Kinmen ancestral hall, revealing incense smoke, red brick, wooden doors and a timeworn household shrine in a quiet moment of everyday devotion.'),
+          ]
+
+          gallery_start = s.find('const GALLERY = [')
+          if gallery_start < 0:
+              raise SystemExit('GALLERY start not found')
+          gallery_end = s.find('\n\n];', gallery_start)
+          if gallery_end < 0:
+              raise SystemExit('GALLERY end not found')
+
+          blocks = []
+          for vid, zh, en, dz, de in items:
+              if "youtube:'" + vid + "'" in s[gallery_start:gallery_end]:
+                  continue
+              blocks.append(
+                  "\n  {kind:'video', youtube:'%s', src:'', img:'https://i.ytimg.com/vi/%s/maxresdefault.jpg',\n"
+                  "   title:{zh:'%s',en:'%s'},\n"
+                  "   desc:{zh:'%s',en:'%s'}},\n" % (vid, vid, zh, en, dz, de)
+              )
+
+          if blocks:
+              s = s[:gallery_end] + ''.join(blocks) + s[gallery_end:]
+
+          # 12 existing videos + 5 new ones. The duplicate NAD0GfVmNa8 remains a single entry.
+          s = s.replace('<span class="hero-video-count">01 / 12</span>', '<span class="hero-video-count">01 / 17</span>', 1)
+
+          # Verify the existing duplicate was not added twice and all five new videos are present exactly once.
+          gallery_end = s.find('\n\n];', gallery_start)
+          gal = s[gallery_start:gallery_end]
+          if gal.count("youtube:'NAD0GfVmNa8'") != 1:
+              raise SystemExit('NAD0GfVmNa8 duplicate check failed')
+          for vid, *_ in items:
+              if gal.count("youtube:'" + vid + "'") != 1:
+                  raise SystemExit('Video missing or duplicated: ' + vid)
+
+          p.write_text(s, encoding='utf-8')
+          print('Added five new videos; existing City God video left unchanged.')
+          PY
+
+      - name: Commit and push
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git diff --cached --quiet && exit 0
+          git commit -m 'Add five new devotional gallery videos'
+          git push
