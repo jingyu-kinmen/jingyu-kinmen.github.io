@@ -1,0 +1,62 @@
+name: Fix visible LINE button
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-visible-line-button.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fix LINE button
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+
+          # Force the LINE action to remain visible in the enquiry modal.
+          marker='/* ---------- LINE CONTACT BUTTON ---------- */'
+          if marker not in s:
+              css='''\n\n/* ---------- LINE CONTACT BUTTON ---------- */\n#lineBtn{display:inline-flex!important;align-items:center;justify-content:center}\n#lineBtn::before{content:"LINE";font-weight:800;margin-right:6px;color:#06c755}\n'''
+              s=s.replace('</style>',css+'\n</style>',1)
+
+          # The LINE button opens the requested LINE ID directly.
+          old="$('#lineBtn').href = 'https://line.me/R/msg/text/?' + body;"
+          new="$('#lineBtn').href = 'https://line.me/ti/p/~' + encodeURIComponent(CONTACT.line || 'gods32166');"
+          if old in s:
+              s=s.replace(old,new,1)
+          elif "$('#lineBtn').href" not in s:
+              raise SystemExit('LINE href assignment not found')
+
+          # Always give the button clear visible wording.
+          oldtxt="$('#lineBtn').textContent = lang==='zh' ? '用 LINE 傳送' : 'Send via LINE';"
+          newtxt="$('#lineBtn').textContent = lang==='zh' ? '聯絡 LINE' : 'Contact on LINE';"
+          if oldtxt in s:
+              s=s.replace(oldtxt,newtxt,1)
+
+          # Also show the LINE ID under the action buttons so it is never ambiguous.
+          oldalt="+ '<b>' + CONTACT.email + '</b>';"
+          newalt="+ '<b>' + CONTACT.email + '</b>' + '<br>LINE ID: <b>' + (CONTACT.line || 'gods32166') + '</b>';"
+          if oldalt in s:
+              s=s.replace(oldalt,newalt,1)
+
+          for needle in ['#lineBtn{display:inline-flex!important','line.me/ti/p/~','聯絡 LINE','LINE ID: <b>']:
+              if needle not in s:
+                  raise SystemExit('Missing LINE fix: '+needle)
+          p.write_text(s,encoding='utf-8')
+          print('LINE button fixed and made visible.')
+          PY
+      - name: Commit and push
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git diff --cached --quiet && exit 0
+          git commit -m 'Make LINE contact button visible in enquiry modal'
+          git push
