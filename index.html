@@ -405,6 +405,12 @@ textarea.summary:focus{outline:none;border-color:var(--accent);background:var(--
 .cart-drawer-foot .btn{width:100%;justify-content:center}
 @media(max-width:640px){.quick-contact-grid{grid-template-columns:1fr}.quick-contact-item span{white-space:normal}.cart-drawer{width:100vw}}
 
+
+
+/* ---------- LINE CONTACT BUTTON ---------- */
+#lineBtn{display:inline-flex!important;align-items:center;justify-content:center}
+#lineBtn::before{content:"LINE";font-weight:800;margin-right:6px;color:#06c755}
+
 </style>
 </head>
 <body>
@@ -1464,12 +1470,12 @@ const CONTACT = {
     $('#mailBtn').href = 'https://mail.google.com/mail/?view=cm&fs=1&to='
       + encodeURIComponent(CONTACT.email) + '&su=' + subj + '&body=' + body;
     // LINE 直接帶入訊息
-    $('#lineBtn').href = 'https://line.me/R/msg/text/?' + body;
+    $('#lineBtn').href = 'https://line.me/ti/p/~' + encodeURIComponent(CONTACT.line || 'gods32166');
     // 給有設定郵件軟體的人的備用連結
     $('#mailAlt').innerHTML = (lang==='zh'
         ? '沒有 Gmail？ <a href="MAILTO">用電腦的郵件軟體開啟</a>，或直接寄到 '
         : 'No Gmail? <a href="MAILTO">Open your mail app</a>, or just write to ')
-      + '<b>' + CONTACT.email + '</b>';
+      + '<b>' + CONTACT.email + '</b>' + '<br>LINE ID: <b>' + (CONTACT.line || 'gods32166') + '</b>';
     $('#mailAlt').innerHTML = $('#mailAlt').innerHTML.replace('MAILTO',
       'mailto:' + CONTACT.email + '?subject=' + subj + '&body=' + body);
   }
@@ -1483,7 +1489,7 @@ const CONTACT = {
       : '✎ You can type directly in this box — add your name, phone and address before copying.';
     $('#modalOk').classList.remove('on');
     $('#copyBtn').textContent = lang==='zh' ? '複製訊息' : 'Copy message';
-    $('#lineBtn').textContent = lang==='zh' ? '用 LINE 傳送' : 'Send via LINE';
+    $('#lineBtn').textContent = lang==='zh' ? '聯絡 LINE' : 'Contact on LINE';
     $('#mailBtn').textContent = lang==='zh' ? '用 Gmail 寄出' : 'Send with Gmail';
     $('#telBtn').textContent  = lang==='zh' ? '直接打電話' : 'Call us';
     $('#telBtn').href  = 'tel:'+CONTACT.tel;
