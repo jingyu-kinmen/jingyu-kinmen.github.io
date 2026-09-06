@@ -371,6 +371,39 @@ textarea.summary:focus{outline:none;border-color:var(--accent);background:var(--
 @media(max-width:460px){
   .g3,.g4{grid-template-columns:1fr}
 }
+
+
+/* ---------- CART DRAWER + QUICK CONTACT ---------- */
+.quick-contact{margin-top:20px;padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--bg-2)}
+.quick-contact-title{font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:10px}
+.quick-contact-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.quick-contact-item{display:flex;flex-direction:column;gap:2px;padding:10px 11px;border-radius:10px;background:var(--card);border:1px solid var(--line);text-decoration:none;min-width:0}
+.quick-contact-item b{font-size:11px;color:var(--muted);font-weight:700}
+.quick-contact-item span{font-size:13px;color:var(--ink);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.quick-contact-item:hover{border-color:var(--accent)}
+.cart-manage-btn{border:0;background:transparent;color:#fff;font:inherit;font-weight:700;cursor:pointer;padding:8px 12px;border-radius:999px;white-space:nowrap}
+.cart-manage-btn:hover{background:rgba(255,255,255,.1)}
+.cart-drawer-backdrop{position:fixed;inset:0;background:rgba(32,25,20,.48);z-index:120;opacity:0;pointer-events:none;transition:.22s;backdrop-filter:blur(3px)}
+.cart-drawer-backdrop.on{opacity:1;pointer-events:auto}
+.cart-drawer{position:absolute;right:0;top:0;bottom:0;width:min(440px,94vw);background:var(--card);box-shadow:-18px 0 60px rgba(40,30,22,.22);display:flex;flex-direction:column;transform:translateX(100%);transition:.25s ease}
+.cart-drawer-backdrop.on .cart-drawer{transform:translateX(0)}
+.cart-drawer-head{padding:22px 22px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:14px}
+.cart-drawer-head h3{margin:0;font-size:21px}
+.cart-drawer-close{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--card);cursor:pointer;font-size:20px;line-height:1}
+.cart-drawer-list{padding:14px 18px 18px;overflow:auto;flex:1;display:grid;gap:10px;align-content:start}
+.cart-empty{padding:34px 10px;text-align:center;color:var(--muted)}
+.cart-row{display:grid;grid-template-columns:1fr auto;gap:12px;padding:13px;border:1px solid var(--line);border-radius:13px;background:#fff}
+.cart-row-name{font-weight:700;font-size:14px;line-height:1.45}
+.cart-row-price{font-size:12.5px;color:var(--accent);font-weight:700;margin-top:3px}
+.cart-row-actions{display:flex;align-items:center;gap:5px}
+.cart-qty-btn,.cart-remove-btn{border:1px solid var(--line);background:var(--card);color:var(--ink);height:32px;min-width:32px;border-radius:8px;cursor:pointer;font:inherit;font-weight:700}
+.cart-qty-btn:hover,.cart-remove-btn:hover{border-color:var(--accent);color:var(--accent)}
+.cart-qty{min-width:24px;text-align:center;font-size:13px;font-weight:700}
+.cart-remove-btn{font-size:14px;margin-left:4px}
+.cart-drawer-foot{padding:16px 18px 20px;border-top:1px solid var(--line);background:var(--card)}
+.cart-drawer-foot .btn{width:100%;justify-content:center}
+@media(max-width:640px){.quick-contact-grid{grid-template-columns:1fr}.quick-contact-item span{white-space:normal}.cart-drawer{width:100vw}}
+
 </style>
 </head>
 <body>
@@ -1013,9 +1046,11 @@ const HERO_CLIP = { src:'', poster:'' };
 
 /* ============ 聯絡設定 CONTACT SETTINGS ============ */
 const CONTACT = {
-  email: 'gods6777@gmail.com',
+  email: 'gods32166@gmail.com',
   tel:   '0976336678',
   line:  ''   // 填入 LINE ID 就會出現 LINE 按鈕 / add a LINE ID to show a LINE button
+,
+  tel:'0976336678'
 };
 
 /* =========================================================
@@ -1312,6 +1347,18 @@ const CONTACT = {
       +   secFacts('near',  T(p.near))
       +   (p.map ? '<a class="lbd-map" href="'+esc(p.map)+'" target="_blank" rel="noopener">◎ '+esc(T(SEC.map))+' ↗</a>' : '')
       +   '<div class="lbd-note">'+esc(note)+'</div>'
+      + quickContactPanel() + '</div></div>';
+  }
+
+
+
+  function quickContactPanel(){
+    return '<div class="quick-contact">'
+      + '<div class="quick-contact-title">'+(lang==='zh'?'直接聯絡':'Contact directly')+'</div>'
+      + '<div class="quick-contact-grid">'
+      +   '<div class="quick-contact-item"><b>LINE ID</b><span>gods32166</span></div>'
+      +   '<a class="quick-contact-item" href="tel:0976336678"><b>'+(lang==='zh'?'電話':'Phone')+'</b><span>0976 3366 78</span></a>'
+      +   '<a class="quick-contact-item" href="mailto:gods32166@gmail.com"><b>Gmail</b><span>gods32166@gmail.com</span></a>'
       + '</div></div>';
   }
 
@@ -1344,7 +1391,7 @@ const CONTACT = {
       +   secProse('ship', T(SHIPPING), true)
       +   secProse('note', T(p.note))
       +   '<div class="lbd-note">'+esc(note)+'</div>'
-      + '</div></div>';
+      + quickContactPanel() + '</div></div>';
   }
 
   function openLightbox(i){
@@ -1463,6 +1510,111 @@ const CONTACT = {
       document.body.removeChild(ta);
     }
   }
+
+
+
+  /* ---------- EDITABLE CART DRAWER ---------- */
+  let cartDrawerOpen = false;
+  let cartManageBtn = null;
+
+  function cartTotalQty(){
+    return Object.keys(cart).reduce((n,k)=>n+(cart[k]||0),0);
+  }
+
+  function syncCartManageBtn(){
+    if (!cartManageBtn) return;
+    const n = cartTotalQty();
+    cartManageBtn.innerHTML = lang==='zh' ? '🛒 購物車 '+n+' 件' : '🛒 Cart '+n;
+  }
+
+  function renderCartDrawer(){
+    const list = $('#cartDrawerList');
+    if (!list) return;
+    const keys = Object.keys(cart).filter(k => cart[k] > 0);
+    if (!keys.length){
+      list.innerHTML = '<div class="cart-empty">'+(lang==='zh'?'購物車目前是空的。':'Your cart is empty.')+'</div>';
+    } else {
+      list.innerHTML = keys.map(k => {
+        const i = +k, p = PRODUCTS[i], q = cart[i]||0;
+        return '<div class="cart-row">'
+          + '<div><div class="cart-row-name">'+esc(T(p.name))+'</div><div class="cart-row-price">'+esc(p.price)+'</div></div>'
+          + '<div class="cart-row-actions">'
+          + '<button class="cart-qty-btn" type="button" data-cart-dec="'+i+'" aria-label="Decrease">−</button>'
+          + '<span class="cart-qty">'+q+'</span>'
+          + '<button class="cart-qty-btn" type="button" data-cart-inc="'+i+'" aria-label="Increase">+</button>'
+          + '<button class="cart-remove-btn" type="button" data-cart-remove="'+i+'" aria-label="Remove">×</button>'
+          + '</div></div>';
+      }).join('');
+    }
+    const send = $('#cartDrawerSend');
+    if (send) send.disabled = !keys.length;
+    syncCartManageBtn();
+  }
+
+  function openCartDrawer(){
+    renderCartDrawer();
+    $('#cartDrawerBackdrop').classList.add('on');
+    document.body.style.overflow = 'hidden';
+    cartDrawerOpen = true;
+  }
+
+  function closeCartDrawer(){
+    const el = $('#cartDrawerBackdrop');
+    if (el) el.classList.remove('on');
+    document.body.style.overflow = '';
+    cartDrawerOpen = false;
+  }
+
+  function initEditableCart(){
+    if ($('#cartDrawerBackdrop')) return;
+    const backdrop = document.createElement('div');
+    backdrop.id = 'cartDrawerBackdrop';
+    backdrop.className = 'cart-drawer-backdrop';
+    backdrop.innerHTML = '<aside class="cart-drawer" role="dialog" aria-modal="true" aria-label="Cart">'
+      + '<div class="cart-drawer-head"><h3><span class="zh">購物車</span><span class="en">Cart</span></h3><button id="cartDrawerClose" class="cart-drawer-close" type="button">×</button></div>'
+      + '<div id="cartDrawerList" class="cart-drawer-list"></div>'
+      + '<div class="cart-drawer-foot"><button id="cartDrawerSend" class="btn btn-primary" type="button"><span class="zh">送出詢問</span><span class="en">Send enquiry</span></button></div>'
+      + '</aside>';
+    document.body.appendChild(backdrop);
+
+    const cartGo = $('#cartGo');
+    if (cartGo && cartGo.parentElement){
+      cartManageBtn = document.createElement('button');
+      cartManageBtn.id = 'cartManageBtn';
+      cartManageBtn.type = 'button';
+      cartManageBtn.className = 'cart-manage-btn';
+      cartGo.parentElement.insertBefore(cartManageBtn, cartGo);
+      cartManageBtn.addEventListener('click', openCartDrawer);
+    }
+
+    $('#cartDrawerClose').addEventListener('click', closeCartDrawer);
+    backdrop.addEventListener('click', e => { if (e.target === backdrop) closeCartDrawer(); });
+    $('#cartDrawerList').addEventListener('click', e => {
+      const inc = e.target.closest('[data-cart-inc]');
+      const dec = e.target.closest('[data-cart-dec]');
+      const rem = e.target.closest('[data-cart-remove]');
+      if (!inc && !dec && !rem) return;
+      const i = +(inc ? inc.dataset.cartInc : dec ? dec.dataset.cartDec : rem.dataset.cartRemove);
+      if (inc) cart[i] = (cart[i]||0) + 1;
+      if (dec) cart[i] = Math.max(0,(cart[i]||0)-1);
+      if (rem) cart[i] = 0;
+      renderShop();
+      renderCart();
+      renderCartDrawer();
+    });
+    $('#cartDrawerSend').addEventListener('click', () => {
+      closeCartDrawer();
+      const go = $('#cartGo');
+      if (go) go.click();
+    });
+    document.addEventListener('keydown', e => { if (e.key==='Escape' && cartDrawerOpen) closeCartDrawer(); });
+    document.addEventListener('click', e => {
+      if (e.target.closest('[data-add]')) setTimeout(()=>{ syncCartManageBtn(); if(cartDrawerOpen) renderCartDrawer(); },0);
+    });
+    syncCartManageBtn();
+  }
+
+  initEditableCart();
 
   /* ---------- EVENTS ---------- */
   $('#galFilters').addEventListener('click', e => {
